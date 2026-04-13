@@ -1,0 +1,33 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-overlay;
+  height: $header-height;
+  background-color: $color-primary;
+  color: $color-white;
+  box-shadow: $shadow-md;
+
+  &__inner {
+    @include container;
+    @include flex-between;
+    height: 100%;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-yellow;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+  }
+}

@@ -1,0 +1,80 @@
+// Couleurs Lidl
+$color-blue: #0050AA;
+$color-yellow: #FFD100;
+$color-red: #CC0000;
+$color-white: #FFFFFF;
+$color-black: #1A1A1A;
+$color-grey: #F5F5F5;
+$color-border: #E0E0E0;
+$color-text: #333333;
+$color-muted: #757575;
+
+// Sémantiques
+$color-primary: $color-blue;
+$color-secondary: $color-yellow;
+$color-danger: $color-red;
+$color-success: #2E7D32;    // message de succès
+$color-warning: #ea2626;    // message d'avertissement
+
+// Typographie
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+$font-size-xs: clamp(0.7rem, 1.5vw, 0.75rem);
+$font-size-sm: clamp(0.8rem, 2vw, 0.875rem);
+$font-size-base: clamp(0.9rem, 2.5vw, 1rem);
+$font-size-md: clamp(1rem, 3vw, 1.125rem);
+$font-size-lg: clamp(1.1rem, 3.5vw, 1.25rem);
+$font-size-xl: clamp(1.3rem, 4vw, 1.5rem);
+$font-size-2xl: clamp(1.6rem, 5vw, 2rem);
+$font-size-3xl: clamp(2rem, 6vw, 2.5rem);
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+
+// Espacements
+
+$space-1: clamp(0.25rem, 0.5vw, 0.25rem);
+$space-2: clamp(0.4rem, 1vw, 0.5rem);
+$space-3: clamp(0.6rem, 1.5vw, 0.75rem);
+$space-4: clamp(0.8rem, 2vw, 1rem);
+$space-6: clamp(1rem, 3vw, 1.5rem);
+$space-8: clamp(1.5rem, 4vw, 2rem);
+$space-12: clamp(2rem, 5vw, 3rem);
+$space-16: clamp(2.5rem, 6vw, 4rem);
+
+// Breakpoints
+
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// Border radius
+
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-full: 9999px;
+
+// Ombres
+
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+// Transitions
+
+$transition: 0.3s ease;
+
+// Layout
+
+$container-width: 1200px;
+$header-height: clamp(52px, 8vw, 64px);
+$nav-height: 64px; // navigation basse mobile (PWA)
+$z-overlay: 300;
+$z-modal: 400;
+$z-toast: 500;

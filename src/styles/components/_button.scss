@@ -1,0 +1,88 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn {
+  @include flex-center;
+  gap: $space-2;
+  display: inline-flex;
+  padding: $space-3 $space-6;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  transition: background-color $transition, transform $transition, box-shadow $transition;
+  white-space: nowrap;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  // Variantes
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken($color-primary, 8%);
+    }
+  }
+
+  &--secondary {
+    background-color: $color-yellow;
+    color: $color-black;
+
+    &:hover {
+      background-color: darken($color-yellow, 8%);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: $color-primary;
+
+    &:hover {
+      background-color: rgba($color-primary, 0.08);
+    }
+  }
+
+  &--danger {
+    background-color: $color-danger;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken($color-danger, 8%);
+    }
+  }
+
+  // Tailles
+  &--sm {
+    padding: $space-2 $space-4;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $space-4 $space-8;
+    font-size: $font-size-md;
+  }
+
+  &--full {
+    width: 100%;
+    justify-content: center;
+  }
+}

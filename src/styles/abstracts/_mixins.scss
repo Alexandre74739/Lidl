@@ -1,0 +1,53 @@
+@use 'variables' as *;
+
+// ============================================================
+// MIXINS
+// ============================================================
+
+// --- Responsive ---
+@mixin sm { @media (min-width: #{$bp-sm}) { @content; } }
+@mixin md { @media (min-width: #{$bp-md}) { @content; } }
+@mixin lg { @media (min-width: #{$bp-lg}) { @content; } }
+@mixin xl { @media (min-width: #{$bp-xl}) { @content; } }
+
+// --- Flex utilitaires ---
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// --- Conteneur centré ---
+@mixin container {
+  width: 100%;
+  max-width: $container-width;
+  margin-inline: auto;
+  padding-inline: $space-4;
+}
+
+// --- Truncate texte ---
+@mixin truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// --- Focus visible accessible ---
+@mixin focus-ring {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// --- Carte ---
+@mixin card {
+  background: $color-white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  padding: $space-4;
+}
