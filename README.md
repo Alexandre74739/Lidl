@@ -8,8 +8,6 @@
 
 Une **PWA** (Progressive Web App) Drive / Click & Collect. L'utilisateur choisit un magasin, remplit un panier, réserve un créneau de retrait et suit sa commande. Un opérateur en magasin prépare la commande avant le retrait.
 
-La PWA signifie que l'application doit être installable sur mobile et fonctionner avec un Service Worker. Cela se configure côté React avec Vite (plugin `vite-plugin-pwa`). -> gérer par Alexandre
-
 ---
 
 ## Stack
@@ -104,4 +102,4 @@ Toute modification du modèle de données doit être signalée aux trois équipe
 
 Pull Requests obligatoires, pas de push direct sur `main`. -> ceux qui connaissent pas peuvent voir avec Dorian et Alexandre
 
-Le projet se lance avec `npm run build && npm run preview`
+Le projet se lance avec `npm run build && npm run preview` sur le port 4173
