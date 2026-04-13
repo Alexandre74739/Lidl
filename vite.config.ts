@@ -39,43 +39,33 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Cache des assets statiques
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}'],
         runtimeCaching: [
           {
-            // Cache de l'API (network-first)
             urlPattern: /^https?:\/\/.*\/api\/.*/i,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'api-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 5, // 5 minutes
-              },
+              expiration: { maxEntries: 50, maxAgeSeconds: 300 },
             },
           },
           {
-            // Cache des images produits (cache-first)
             urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'images-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 jours
-              },
+              expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 * 7 },
             },
           },
         ],
       },
+      // SW désactivé en dev (évite les conflits HMR)
       devOptions: {
-        enabled: true, // active le SW en dev pour tester
+        enabled: false,
       },
     }),
   ],
   resolve: {
-    alias: {
-      '@': '/src',
-    },
+    alias: { '@': '/src' },
   },
 })

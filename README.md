@@ -103,3 +103,5 @@ Tout passe par `.env` et est géré par le `gitignore` donc attention à ne rien
 Toute modification du modèle de données doit être signalée aux trois équipes pour éviter de casser le code
 
 Pull Requests obligatoires, pas de push direct sur `main`. -> ceux qui connaissent pas peuvent voir avec Dorian et Alexandre
+
+Le projet se lance avec `npm run build && npm run preview`
