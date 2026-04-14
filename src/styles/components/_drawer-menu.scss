@@ -1,0 +1,245 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Variable CSS du composant ────────────────────────────────────────────────
+// --dm-accent : couleur d'accentuation passée via la prop accentColor
+
+.drawer-menu {
+  background-color: $color-primary;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  // ─── Bouton toggle (ouvrir / fermer) ──────────────────────────────────────
+  &__toggle {
+    @include flex-between;
+    gap: $space-3;
+    width: 100%;
+    padding: $space-4;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    background-color: var(--dm-accent, $color-primary);
+    transition: filter $transition;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__toggle-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  &__toggle-label {
+    flex: 1;
+    text-align: left;
+  }
+
+  &__toggle-arrow {
+    flex-shrink: 0;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid currentColor;
+    transition: transform $transition;
+
+    &--up {
+      transform: rotate(180deg);
+    }
+  }
+
+  // ─── Corps (panneaux) — animé en hauteur ──────────────────────────────────
+  &__body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+
+    // Élément enfant requis par grid-template-rows: 0fr
+    > * {
+      overflow: hidden;
+    }
+  }
+
+  &--open &__body {
+    grid-template-rows: 1fr;
+  }
+
+  // ─── Conteneur des deux panneaux côte à côte ──────────────────────────────
+  &__panels {
+    display: flex;
+    width: 200%;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &--shifted {
+      transform: translateX(-50%);
+    }
+  }
+
+  // ─── Panneau individuel ───────────────────────────────────────────────────
+  &__panel {
+    background-color: $color-grey;
+    width: 50%;
+    min-width: 0;
+  }
+
+  // ─── Liste commune ────────────────────────────────────────────────────────
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // ─── Item de liste ────────────────────────────────────────────────────────
+  &__item {
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  // ─── Rangée cliquable (bouton ou lien) ────────────────────────────────────
+  &__row {
+    @include flex-between;
+    gap: $space-3;
+    width: 100%;
+    padding: $space-3 $space-4;
+    background: none;
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    background-color: $color-white;
+    color: $color-text;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: background-color $transition;
+
+    &:hover {
+      background-color: $color-grey;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // ─── Icône circulaire ─────────────────────────────────────────────────────
+  &__icon {
+    @include flex-center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $color-grey;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  // ─── Libellé de l'item ────────────────────────────────────────────────────
+  &__label {
+    flex: 1;
+    @include truncate;
+  }
+
+  // ─── Chevron droit ────────────────────────────────────────────────────────
+  &__chevron {
+    flex-shrink: 0;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid var(--dm-accent, $color-primary);
+  }
+
+  // ─── Section séparatrice ──────────────────────────────────────────────────
+  &__section-label {
+    display: block;
+    padding: $space-3 $space-4 $space-2;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-top: 1px solid $color-border;
+  }
+
+  // ─── En-tête du panneau secondaire ────────────────────────────────────────
+  &__sub-header {
+    padding: $space-2 $space-4;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__back {
+    @include flex-center;
+    gap: $space-2;
+    justify-content: flex-start;
+    background: none;
+    border: none;
+    padding: $space-2 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--dm-accent, $color-primary);
+    cursor: pointer;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__back-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid var(--dm-accent, $color-primary);
+  }
+
+  // ─── Bloc titre + "Voir tout" ─────────────────────────────────────────────
+  &__sub-title-block {
+    padding: $space-4;
+    border-left: 3px solid var(--dm-accent, $color-primary);
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__sub-title {
+    margin: 0 0 $space-2;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-text;
+  }
+
+  &__view-all {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: var(--dm-accent, $color-primary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}

@@ -1,0 +1,201 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Couleurs du menu — modifier ici pour personnaliser ──────────────────────
+$nav-bg:     $color-white   !default;
+$nav-text:   $color-text    !default;
+$nav-accent: $color-primary !default;
+
+.nav-menu {
+  background-color: $nav-bg;
+  border-bottom: 1px solid $color-border;
+
+  // ─── Barre horizontale ────────────────────────────────────────────────────
+  &__list {
+    @include container;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // ─── Élément de catégorie ─────────────────────────────────────────────────
+  &__item {
+    position: relative;
+
+    &--open > .nav-menu__trigger {
+      color: var(--accent, $color-primary);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // ─── Bouton de catégorie ──────────────────────────────────────────────────
+  &__trigger {
+    @include flex-center;
+    gap: $space-2;
+    height: 44px;
+    padding: 0 $space-4;
+    background: none;
+    border: none;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $nav-text;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    transition: color $transition;
+
+    // Soulignement animé
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: $space-4;
+      right: $space-4;
+      height: 2px;
+      background-color: var(--accent, $color-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $transition;
+    }
+
+    &:hover {
+      color: var(--accent, $color-primary);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // ─── Flèche du trigger ────────────────────────────────────────────────────
+  &__arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform $transition;
+
+    &--up {
+      transform: rotate(180deg);
+    }
+  }
+
+  // ─── Dropdown (premier niveau) ────────────────────────────────────────────
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: $z-overlay;
+    min-width: 220px;
+    list-style: none;
+    margin: 0;
+    padding: $space-2 0;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    box-shadow: $shadow-md;
+    animation: nav-menu-fade-in 0.15s ease;
+  }
+
+  // ─── Ligne de gamme ───────────────────────────────────────────────────────
+  &__range {
+    position: relative;
+
+    // Révèle le sous-menu au hover
+    &--has-sub:hover > .nav-menu__submenu {
+      display: block;
+    }
+  }
+
+  // ─── Label de gamme (bouton ou lien) ─────────────────────────────────────
+  &__range-label {
+    @include flex-between;
+    padding: $space-2 $space-4;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color $transition, color $transition;
+
+    &:hover {
+      background-color: $color-grey;
+      color: var(--accent, $color-primary);
+    }
+  }
+
+  // ─── Flèche sous-menu ─────────────────────────────────────────────────────
+  &__sub-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 5px solid currentColor;
+    margin-left: $space-2;
+    flex-shrink: 0;
+  }
+
+  // ─── Sous-menu (second niveau) ────────────────────────────────────────────
+  &__submenu {
+    display: none;
+    position: absolute;        // aligné sur le label parent
+    left: 100%;
+    z-index: $z-overlay;
+    min-width: 200px;
+    list-style: none;
+    margin: 0;
+    padding: $space-2 0;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    box-shadow: $shadow-md;
+    animation: nav-menu-fade-in 0.1s ease;
+  }
+
+  // ─── Lien de sous-item ────────────────────────────────────────────────────
+  &__subitem {
+    a {
+      display: block;
+      padding: $space-2 $space-4;
+      font-size: $font-size-sm;
+      color: $color-text;
+      text-decoration: none;
+      transition: background-color $transition, color $transition;
+
+      &:hover {
+        background-color: $color-grey;
+        color: var(--accent, $color-primary);
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+  }
+}
+
+// ─── Animation ────────────────────────────────────────────────────────────────
+@keyframes nav-menu-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

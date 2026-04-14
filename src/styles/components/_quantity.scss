@@ -1,0 +1,55 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.quantity {
+    @include flex-center;
+    gap: 0;
+    display: inline-flex;
+    border: 2px solid $color-border;
+    border-radius: $radius-md;
+    overflow: hidden;
+
+    &--btn {
+        @include flex-center;
+        width: clamp(2rem, 5vw, 2.5rem);
+        height: clamp(2rem, 5vw, 2.5rem);
+        background-color: $color-grey;
+        color: $color-text;
+        font-size: $font-size-md;
+        font-weight: $font-weight-bold;
+        line-height: 1;
+        border: none;
+        cursor: pointer;
+        transition: background-color $transition, transform $transition;
+
+        &:hover {
+            background-color: color.adjust($color-grey, $lightness: -6%);
+        }
+
+        &:active {
+            transform: scale(0.92);
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+
+    &--value {
+        @include flex-center;
+        min-width: clamp(2rem, 5vw, 2.5rem);
+        height: clamp(2rem, 5vw, 2.5rem);
+        padding-inline: $space-2;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+        color: $color-text;
+        background-color: $color-white;
+        user-select: none;
+    }
+}
