@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
 // Couleurs Lidl
 $color-blue: #F97A0A;
 $color-yellow: #114FCB;
@@ -22,7 +19,7 @@ $color-warning: #ea2626; // message d'avertissement
 // Typographie
 $font-title: "Climate Crisis", sans-serif;
 $font-family: "Montserrat", sans-serif;
-$font-accent: "Montserrat", sans-serif, bold;
+$font-accent: "Montserrat", sans-serif;
 
 $font-size-xs: clamp(0.7rem, 1.5vw, 0.75rem);
 $font-size-sm: clamp(0.8rem, 2vw, 0.875rem);
