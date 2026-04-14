@@ -1,0 +1,84 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+$cc-primary-hover: color.adjust($color-primary, $lightness: -8%);
+$cc-secondary-hover: color.adjust($color-border, $lightness: -6%);
+
+:root {
+  --cc-font-family: #{$font-family};
+  --cc-modal-border-radius: #{$radius-lg};
+  --cc-btn-border-radius: #{$radius-md};
+  --cc-z-index: #{$z-modal};
+
+  // Fond & textes
+  --cc-bg: #{$color-white};
+  --cc-primary-color: #{$color-black};
+  --cc-secondary-color: #{$color-muted};
+  --cc-separator-border-color: #{$color-border};
+
+  // Bouton primaire → orange Lidl
+  --cc-btn-primary-bg: #{$color-primary};
+  --cc-btn-primary-color: #{$color-white};
+  --cc-btn-primary-border-color: #{$color-primary};
+  --cc-btn-primary-hover-bg: #{$cc-primary-hover};
+  --cc-btn-primary-hover-color: #{$color-white};
+  --cc-btn-primary-hover-border-color: #{$cc-primary-hover};
+
+  // Bouton secondaire → gris clair
+  --cc-btn-secondary-bg: #{$color-grey};
+  --cc-btn-secondary-color: #{$color-black};
+  --cc-btn-secondary-border-color: #{$color-border};
+  --cc-btn-secondary-hover-bg: #{$cc-secondary-hover};
+  --cc-btn-secondary-hover-color: #{$color-black};
+  --cc-btn-secondary-hover-border-color: #{$cc-secondary-hover};
+
+  // Toggle → orange quand activé
+  --cc-toggle-on-bg: #{$color-primary};
+  --cc-toggle-off-bg: #{$color-muted};
+  --cc-toggle-on-knob-bg: #{$color-white};
+  --cc-toggle-off-knob-bg: #{$color-white};
+  --cc-link-color: #{$color-primary};
+}
+
+.cookie-fab {
+  position: fixed;
+  bottom: $space-6;
+  left: $space-6;
+  z-index: calc(#{$z-overlay} - 1);
+
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-full;
+  border: 2px solid $color-border;
+  background: $color-white;
+  color: $color-primary;
+  box-shadow: $shadow-md;
+  cursor: pointer;
+
+  @include flex-center;
+  transition: transform $transition, box-shadow $transition, background-color $transition;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: $shadow-lg;
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // Au-dessus de la nav mobile PWA
+  @media (max-width: #{$bp-md}) {
+    bottom: calc(#{$nav-height} + #{$space-4});
+  }
+}
