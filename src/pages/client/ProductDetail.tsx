@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
-import { ShoppingCart, ChevronRight } from "lucide-react";
+import { ChevronRight, Truck, BadgeCheck } from "lucide-react";
 import { getProductById, type Product } from "../../services/productService";
 import { useCart } from "../../services/CartContext";
 import Quantity from "../../components/ui/Quantity";
+import NutriScore from "../../components/product/NutriScore";
 import ConseilDuChef from "../../components/product/ConseilDuChef";
 import AvisSection from "../../components/product/AvisSection";
 import ProduitsSimilaires from "../../components/product/ProduitsSimilaires";
 import PourAccompagner from "../../components/product/PourAccompagner";
+
+const PROMO_DISCOUNT = 0.20;
+
+function applyPromo(price: number) {
+  return Math.round(price * (1 - PROMO_DISCOUNT) * 100) / 100;
+}
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
@@ -31,11 +38,20 @@ export default function ProductDetail() {
 
   const handleQuantity = (q: number) => {
     if (!product) return;
-    setQuantity({ id: productId, name: product.name, price: product.price, image: product.image_url ?? "" }, q);
+    setQuantity(
+      { id: productId, name: product.name, price: promoPrice, image: product.image_url ?? "" },
+      q
+    );
   };
 
   if (loading) return <div className="product-detail__loading container">Chargement du produit...</div>;
   if (error || !product) return <div className="product-detail__error container">Produit introuvable.</div>;
+
+  const hasPromo = true; // à brancher sur un vrai champ back plus tard
+  const promoPrice = hasPromo ? applyPromo(product.price) : product.price;
+  const pricePerKg = product.weight && product.weight > 0
+    ? promoPrice / product.weight
+    : null;
 
   return (
     <main className="product-detail">
@@ -52,10 +68,12 @@ export default function ProductDetail() {
         <span className="product-detail__breadcrumb-current">{product.name}</span>
       </nav>
 
-      {/* Hero : image + infos */}
+      {/* Hero */}
       <div className="product-detail__hero container">
+
         {/* Image */}
         <div className="product-detail__gallery">
+          {hasPromo && <span className="product-detail__promo-badge">Promo</span>}
           {product.image_url ? (
             <img src={product.image_url} alt={product.name} className="product-detail__image" />
           ) : (
@@ -65,47 +83,64 @@ export default function ProductDetail() {
 
         {/* Infos */}
         <div className="product-detail__info">
-          {product.category && (
-            <span className="product-detail__origin">
-              🇫🇷 {product.category.name}
-            </span>
-          )}
 
           <h1 className="product-detail__name">{product.name}</h1>
+          
+          {/* Ligne méta */}
+          <p className="product-detail__meta">
+            {product.weight && <span>{product.weight < 1 ? `${product.weight * 1000}g` : `${product.weight}kg`}</span>}
+            {product.weight && product.category && <span className="product-detail__meta-sep">—</span>}
+            {product.category && <span>{product.category.name}</span>}
+            <span className="product-detail__meta-sep">—</span>
+            <span>🇫🇷 Origine : France</span>
+          </p>
 
-          {product.description && (
-            <p className="product-detail__desc">{product.description}</p>
-          )}
 
+          {/* Nutri-Score */}
+          {product.nutriscore && <NutriScore score={product.nutriscore} />}
+
+          {/* Prix */}
           <div className="product-detail__pricing">
-            <span className="product-detail__price">
-              {Number(product.price).toFixed(2).replace(".", ",")}€
-            </span>
-            <span className="product-detail__unit">/ unité</span>
-          </div>
-
-          <div className="product-detail__actions">
-            {quantity === 0 ? (
-              <button
-                className="product-detail__add-btn"
-                onClick={() => handleQuantity(1)}
-              >
-                <ShoppingCart size={18} aria-hidden />
-                Ajouter au panier
-              </button>
-            ) : (
-              <div className="product-detail__qty-row">
-                <Quantity value={quantity} onChange={handleQuantity} />
-                <button
-                  className="product-detail__add-btn"
-                  onClick={() => handleQuantity(quantity)}
-                >
-                  <ShoppingCart size={18} aria-hidden />
-                  Dans le panier
-                </button>
-              </div>
+            <div className="product-detail__price-row">
+              <span className="product-detail__price">{promoPrice.toFixed(2).replace(".", ",")} €</span>
+              {hasPromo && (
+                <span className="product-detail__price-original">
+                  {product.price.toFixed(2).replace(".", ",")} €
+                </span>
+              )}
+            </div>
+            {pricePerKg && (
+              <p className="product-detail__price-kg">
+                soit {pricePerKg.toFixed(2).replace(".", ",")} € / kg
+              </p>
             )}
           </div>
+
+          {/* Actions */}
+          <div className="product-detail__actions">
+            <div className={`product-detail__qty-wrap${quantity > 0 ? " product-detail__qty-wrap--visible" : ""}`}>
+              <Quantity value={quantity} onChange={handleQuantity} />
+            </div>
+            <button
+              className="product-detail__add-btn"
+              onClick={() => handleQuantity(quantity === 0 ? 1 : quantity)}
+            >
+              {quantity === 0 ? "Ajouter au panier" : "Dans le panier"}
+            </button>
+          </div>
+
+          {/* Badges services */}
+          <div className="product-detail__badges">
+            <span className="product-detail__badge-item">
+              <Truck size={14} aria-hidden />
+              Livraison express
+            </span>
+            <span className="product-detail__badge-item">
+              <BadgeCheck size={14} aria-hidden />
+              Garantie fraîcheur
+            </span>
+          </div>
+
         </div>
       </div>
 
@@ -119,16 +154,12 @@ export default function ProductDetail() {
           </p>
           <ConseilDuChef />
         </div>
-
         <AvisSection />
       </div>
 
       {/* Produits similaires */}
       <div className="container">
-        <ProduitsSimilaires
-          categoryId={product.category?.id}
-          currentProductId={productId}
-        />
+        <ProduitsSimilaires categoryId={product.category?.id} currentProductId={productId} />
       </div>
 
       {/* Pour accompagner */}
