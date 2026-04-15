@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
 import Selection from "./pages/client/Selection";
+import TestIntegPage from "./test-integ-back/TestIntegPage";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
@@ -40,6 +41,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/selection" element={<Selection />} />
+        <Route path="/test-integ" element={<TestIntegPage />} />
       </Routes>
       <Footer />
       </CartProvider>
