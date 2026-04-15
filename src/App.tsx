@@ -1,6 +1,7 @@
 import Button from "./components/ui/Button";
 import Quantity from "./components/ui/Quantity";
 import DrawerMenu from "./components/ui/DrawerMenu";
+import InstallPrompt from "./components/ui/InstallPrompt";
 import drawerMenuData from "./data/drawerMenuData";
 import { CookieProvider, useCookies } from "./services/CookieContext";
 
@@ -52,6 +53,7 @@ function App() {
       </main>
 
       <CookieFloatingButton />
+      <InstallPrompt />
     </CookieProvider>
   );
 }

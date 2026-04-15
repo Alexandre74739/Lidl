@@ -1,0 +1,99 @@
+@use '../abstracts/variables' as *;
+
+.install-prompt {
+  position: fixed;
+  bottom: $space-4;
+  left: $space-4;
+  right: $space-4;
+  z-index: $z-toast;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-4 $space-6;
+  box-shadow: $shadow-lg;
+
+  @media (min-width: $bp-md) {
+    left: auto;
+    right: $space-8;
+    max-width: 420px;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+
+    strong {
+      font-family: $font-family;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-sm;
+      color: $color-black;
+    }
+
+    span {
+      font-family: $font-family;
+      font-size: $font-size-xs;
+      color: $color-muted;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    flex-shrink: 0;
+  }
+
+  &__btn {
+    border: none;
+    cursor: pointer;
+    font-family: $font-family;
+    font-weight: $font-weight-bold;
+    border-radius: $radius-full;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &--primary {
+      background: $color-primary;
+      color: $color-white;
+      font-size: $font-size-sm;
+      padding: $space-2 $space-6;
+    }
+
+    &--dismiss {
+      background: transparent;
+      color: $color-muted;
+      font-size: $font-size-base;
+      padding: $space-2;
+      line-height: 1;
+    }
+  }
+}

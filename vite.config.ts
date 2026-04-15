@@ -76,9 +76,9 @@ export default defineConfig({
           },
         ],
       },
-      // SW désactivé en dev (évite les conflits HMR)
       devOptions: {
-        enabled: false,
+        enabled: true,
+        type: 'module',
       },
     }),
   ],
