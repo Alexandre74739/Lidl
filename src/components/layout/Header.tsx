@@ -4,9 +4,9 @@ import { Link } from "react-router";
 import { useCart } from "../../services/CartContext";
 
 const navLinks = [
-  { label: "Rayons", to: "/selection" },
-  { label: "Promotions", to: "#" },
-  { label: "Fidélité", to: "#" },
+  { label: "Rayons", to: "/rayons" },
+  { label: "Promotions", to: "promotions" },
+  { label: "Fidélité", to: "fidelite" },
 ];
 
 export default function Header() {
