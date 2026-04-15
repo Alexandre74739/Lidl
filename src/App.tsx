@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
-import Selection from "./pages/client/Selection";
+// import Selection from "./pages/client/Selection";
 import TestIntegPage from "./test-integ-back/TestIntegPage";
 import Rayons from "./pages/client/Rayons";
 import Promotions from "./pages/client/Promotions";
