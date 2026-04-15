@@ -144,7 +144,7 @@
     transition: background $transition, transform $transition;
 
     &:hover {
-      background: color.adjust($color-primary, $lightness: -8%);
+      background: darken($color-secondary, 10%);
     }
 
     &:active {
