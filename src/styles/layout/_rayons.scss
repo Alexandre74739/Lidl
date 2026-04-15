@@ -131,6 +131,10 @@
       font-size: $font-size-sm;
       color: $color-muted;
       line-height: $line-height-normal;
+
+      &:hover {
+        color: darken($color-primary, 30%);
+      }
     }
   }
 }
@@ -138,7 +142,6 @@
 // ─── Ambiances Grid ───────────────────────────────────────────────────────────
 
 .ambiances-grid {
-  background-color: $color-grey;
   padding-block: $space-12;
 
   &__inner {
@@ -150,7 +153,7 @@
   }
 
   &__title {
-    font-family: $font-title;
+    font-family: $font-family;
     color: $color-secondary;
     font-size: $font-size-2xl;
     margin-bottom: $space-3;
