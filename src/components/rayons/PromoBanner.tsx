@@ -14,7 +14,7 @@ export default function PromoBanner() {
           <Button to="/promotions">Découvrir la sélection</Button>
         </div>
         <div className="promo-banner__image">
-          <img src="https://picsum.photos/seed/promotions/800/600" alt="Nos promotions de la semaine" />
+          <img src="/products/products (1).png" alt="Nos promotions de la semaine" />
         </div>
       </div>
     </section>
