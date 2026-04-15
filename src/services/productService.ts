@@ -14,3 +14,6 @@ export interface Product {
 }
 
 export const getProducts = (): Promise<Product[]> => apiFetch<Product[]>('/product');
+
+export const getProductById = (id: number): Promise<Product> =>
+  apiFetch<Product>(`/product/${id}`);
