@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer__inner">
         <div className="footer__brand">
           <span className="footer__logo">Lidl Collect</span>
-          <span className="footer__tagline">Lidl, ça vaut le coup</span>
+          <span className="footer__tagline">Bien choisir, sans se ruiner</span>
         </div>
 
         <nav className="footer__links" aria-label="Liens de pied de page">
