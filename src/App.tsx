@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
 import TestIntegPage from "./test-integ-back/TestIntegPage";
 import Rayons from "./pages/client/Rayons";
+import RayonDetail from "./pages/client/RayonDetail";
+import AmbianceMatch from "./pages/client/AmbianceMatch";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
 import ProductDetail from "./pages/client/ProductDetail";
@@ -43,12 +45,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/selection" element={<Selection />} />
         <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/test-integ" element={<TestIntegPage />} />
         <Route path="/rayons" element={<Rayons />} />
+        <Route path="/rayons/:id" element={<RayonDetail />} />
+        <Route path="/ambiances/match" element={<AmbianceMatch />} />
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/fidelite" element={<Fidelite />} />
+        <Route path="/test-integ" element={<TestIntegPage />} />
       </Routes>
       <Footer />
       </CartProvider>

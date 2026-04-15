@@ -16,7 +16,7 @@ export default function ProduitsSimilaires({ categoryId, currentProductId }: Pro
         const filtered = all.filter(
           (p) =>
             p.id !== currentProductId &&
-            (categoryId ? p.category?.id === categoryId : true)
+            (categoryId ? p.category_id === categoryId : true)
         );
         setProducts(filtered.slice(0, 4));
       })

@@ -33,7 +33,7 @@ const ambiancesData: Ambiance[] = [
   {
     id: "match",
     label: "Soirée Match",
-    image: "/products/products (9).png",
+    image: "https://nbjzohcoepdcocgcmwus.supabase.co/storage/v1/object/public/picture_url/pizza_surgele.avif",
     to: "/ambiances/match",
   },
   {
