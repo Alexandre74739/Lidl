@@ -145,6 +145,17 @@
       grid-template-columns: repeat(4, 1fr);
     }
   }
+
+  &__status {
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: $color-muted;
+    padding-block: $space-4;
+
+    &--error {
+      color: $color-danger;
+    }
+  }
 }
 
 // ─── Terroir banner ──────────────────────────────────────────────────────────

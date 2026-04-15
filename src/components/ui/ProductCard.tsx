@@ -8,6 +8,7 @@ interface ProductCardProps {
   name: string;
   description?: string;
   price: number;
+  originalPrice?: number;
   promotion?: string;
   subtitle?: string;
 }
@@ -18,6 +19,7 @@ export default function ProductCard({
   name,
   description,
   price,
+  originalPrice,
   promotion,
   subtitle,
 }: ProductCardProps) {
@@ -40,9 +42,16 @@ export default function ProductCard({
         )}
 
         <div className="product-card__footer">
-          <span className="product-card__price">
-            {price.toFixed(2).replace(".", ",")}€
-          </span>
+          <div className="product-card__price-group">
+            {originalPrice && (
+              <span className="product-card__price--original">
+                {originalPrice.toFixed(2).replace(".", ",")}€
+              </span>
+            )}
+            <span className={`product-card__price${originalPrice ? " product-card__price--promo" : ""}`}>
+              {price.toFixed(2).replace(".", ",")}€
+            </span>
+          </div>
 
           {quantity === 0 ? (
             <button

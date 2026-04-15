@@ -90,11 +90,29 @@
     padding-top: $space-3;
   }
 
+  &__price-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
   &__price {
     font-family: $font-family;
     font-size: $font-size-xl;
     font-weight: $font-weight-bold;
     color: $color-secondary;
+
+    &--original {
+      font-family: $font-family;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-regular;
+      color: $color-muted;
+      text-decoration: line-through;
+    }
+
+    &--promo {
+      color: $color-primary;
+    }
   }
 
   &__add {
