@@ -11,7 +11,7 @@ export default function HeroSection() {
           Produits premium sélectionnés avec passion<br />
           pour sublimer vos tables quotidiennes.
         </p>
-        <Button to="/selection">Découvrir la sélection</Button>
+        <Button to="/rayon">Découvrir la sélection</Button>
       </div>
     </section>
   );

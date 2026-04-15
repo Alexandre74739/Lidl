@@ -1,0 +1,221 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Promo Banner ─────────────────────────────────────────────────────────────
+
+.promo-banner {
+  background-color: $color-grey;
+  padding-block: $space-12;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-8;
+    align-items: center;
+
+    @include md {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: $space-3;
+  }
+
+  &__title {
+    font-family: $font-title;
+    color: $color-secondary;
+    font-size: $font-size-3xl;
+    line-height: $line-height-tight;
+    margin-bottom: $space-4;
+  }
+
+  &__desc {
+    color: $color-muted;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    max-width: 44ch;
+    margin-bottom: $space-8;
+  }
+
+  &__image {
+    img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: $radius-lg;
+      box-shadow: $shadow-md;
+    }
+  }
+}
+
+// ─── Rayons Grid ──────────────────────────────────────────────────────────────
+
+.rayons-grid {
+  padding-block: $space-12;
+
+  &__inner {
+    @include container;
+  }
+
+  &__title {
+    font-family: $font-title;
+    color: $color-secondary;
+    font-size: $font-size-2xl;
+    margin-bottom: $space-8;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4;
+
+    @include md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// ─── Rayon Card ───────────────────────────────────────────────────────────────
+
+.rayon-card {
+  display: block;
+  background-color: $color-grey;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow $transition, transform $transition;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__image {
+    img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__body {
+    padding: $space-4;
+  }
+
+  &__title {
+    font-family: $font-title;
+    color: $color-secondary;
+    font-size: $font-size-lg;
+    margin-bottom: $space-3;
+    line-height: $line-height-tight;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+
+    li {
+      font-size: $font-size-sm;
+      color: $color-muted;
+      line-height: $line-height-normal;
+    }
+  }
+}
+
+// ─── Ambiances Grid ───────────────────────────────────────────────────────────
+
+.ambiances-grid {
+  background-color: $color-grey;
+  padding-block: $space-12;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    margin-bottom: $space-8;
+  }
+
+  &__title {
+    font-family: $font-title;
+    color: $color-secondary;
+    font-size: $font-size-2xl;
+    margin-bottom: $space-3;
+  }
+
+  &__desc {
+    color: $color-muted;
+    font-size: $font-size-base;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-6;
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// ─── Ambiance Card ────────────────────────────────────────────────────────────
+
+.ambiance-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+
+  &__image {
+    width: 100%;
+
+    img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: $radius-lg;
+      display: block;
+      transition: transform $transition;
+    }
+
+    &:hover img {
+      transform: scale(1.02);
+    }
+  }
+
+  &__title {
+    font-family: $font-title;
+    color: $color-secondary;
+    font-size: $font-size-lg;
+    text-align: center;
+    line-height: $line-height-tight;
+  }
+
+  &__link {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: underline;
+    transition: color $transition;
+
+    &:hover {
+      color: darken($color-primary, 10%);
+    }
+  }
+}

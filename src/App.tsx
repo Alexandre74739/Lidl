@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
 import Selection from "./pages/client/Selection";
 import TestIntegPage from "./test-integ-back/TestIntegPage";
+import Rayons from "./pages/client/Rayons";
+import Promotions from "./pages/client/Promotions";
+import Fidelite from "./pages/client/Fidelite";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
@@ -42,6 +45,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/selection" element={<Selection />} />
         <Route path="/test-integ" element={<TestIntegPage />} />
+        <Route path="/rayons" element={<Rayons />} />
+        <Route path="/promotions" element={<Promotions />} />
+        <Route path="/fidelite" element={<Fidelite />} />
       </Routes>
       <Footer />
       </CartProvider>
