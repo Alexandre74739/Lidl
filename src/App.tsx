@@ -1,8 +1,7 @@
-import Button from "./components/ui/Button";
-import Quantity from "./components/ui/Quantity";
-import DrawerMenu from "./components/ui/DrawerMenu";
+import { Routes, Route } from "react-router";
+import Home from "./pages/Home";
+import Selection from "./pages/Selection";
 import InstallPrompt from "./components/ui/InstallPrompt";
-import drawerMenuData from "./data/drawerMenuData";
 import { CookieProvider, useCookies } from "./services/CookieContext";
 
 const CookieFloatingButton = () => {
@@ -34,23 +33,10 @@ const CookieFloatingButton = () => {
 function App() {
   return (
     <CookieProvider>
-      <main>
-        <div className="container">
-          <h1>Lidl Drive</h1>
-          <p>Application en cours de construction un peu de patience…</p>
-
-          <Button to="/page" variant="primary">
-            Click me
-          </Button>
-
-          <Quantity />
-
-          <DrawerMenu
-            entries={drawerMenuData}
-            toggleLabel="Toutes les catégories"
-          />
-        </div>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/selection" element={<Selection />} />
+      </Routes>
 
       <CookieFloatingButton />
       <InstallPrompt />
