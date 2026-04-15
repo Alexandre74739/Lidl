@@ -4,10 +4,10 @@
 .footer {
   background: $color-grey;
   border-top: 1.5px solid $color-border;
-  margin-bottom: $nav-height; // espace PWA nav mobile
+  padding-bottom: $nav-height; // espace PWA nav mobile
 
   @include md {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   &__inner {
