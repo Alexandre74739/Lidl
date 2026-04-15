@@ -5,6 +5,7 @@ import TestIntegPage from "./test-integ-back/TestIntegPage";
 import Rayons from "./pages/client/Rayons";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
+import FruitLegumes from "./pages/client/fruit_legumes";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
@@ -48,6 +49,7 @@ function App() {
         <Route path="/rayons" element={<Rayons />} />
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/fidelite" element={<Fidelite />} />
+        <Route path="/rayons/alimentaire" element={<FruitLegumes />} />
       </Routes>
       <Footer />
       </CartProvider>

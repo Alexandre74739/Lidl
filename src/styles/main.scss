@@ -8,6 +8,7 @@
 @use 'layout/nav';
 @use 'layout/home';
 @use 'layout/rayons';
+@use 'layout/fruit-legumes';
 
 // Composants
 @use 'components/button';
@@ -16,4 +17,5 @@
 @use 'components/drawer-menu';
 @use 'components/cookie';
 @use 'components/product-card';
+@use 'components/fruit-card';
 @use 'components/install-prompt';
