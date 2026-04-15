@@ -1,25 +1,32 @@
-import { useState } from "react";
+interface QuantityProps {
+  value: number;
+  onChange: (value: number) => void;
+  min?: number;
+  max?: number;
+}
 
-function Quantity() {
-    const [quantity, setQuantity] = useState(0);
-
-    const addProduct = () => {
-        setQuantity(quantity + 1);
-    };
-
-    const lessProduct = () => {
-        if (quantity > 0) {
-            setQuantity(quantity - 1);
-        }
-    }
-    
-    return (
-        <div className="quantity">
-            <button className="quantity--btn" onClick={lessProduct}>-</button>
-            <span className="quantity--value">{quantity}</span>
-            <button className="quantity--btn" onClick={addProduct}>+</button>
-        </div>
-    );
+function Quantity({ value, onChange, min = 0, max }: QuantityProps) {
+  return (
+    <div className="quantity">
+      <button
+        className="quantity--btn"
+        onClick={() => onChange(value - 1)}
+        disabled={value <= min}
+        aria-label="Retirer un article"
+      >
+        -
+      </button>
+      <span className="quantity--value">{value}</span>
+      <button
+        className="quantity--btn"
+        onClick={() => onChange(value + 1)}
+        disabled={max !== undefined && value >= max}
+        aria-label="Ajouter un article"
+      >
+        +
+      </button>
+    </div>
+  );
 }
 
 export default Quantity;

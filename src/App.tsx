@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
-import Home from "./pages/Home";
-import Selection from "./pages/Selection";
+import Home from "./pages/client/Home";
+import Selection from "./pages/client/Selection";
 import InstallPrompt from "./components/ui/InstallPrompt";
 import { CookieProvider, useCookies } from "./services/CookieContext";
 
