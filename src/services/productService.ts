@@ -2,6 +2,7 @@ import { apiFetch } from './api';
 
 export interface Product {
   id: number;
+  category_id?: number;
   name: string;
   description?: string;
   price: number;
@@ -9,6 +10,7 @@ export interface Product {
   image_url?: string;
   nutriscore?: string;
   is_active?: boolean;
+  // Présent uniquement sur GET /product/:id (relation chargée)
   category?: {
     id: number;
     name: string;
