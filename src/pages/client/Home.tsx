@@ -1,76 +1,32 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import ProductCard from "../../components/ui/ProductCard";
 import HeroSection from "../../components/home/HeroSection";
 import TerroirBanner from "../../components/home/TerroirBanner";
+import { getProducts, type Product } from "../../services/productService";
 
-// Données fictives temporaires
-const offres = [
-  {
-    id: 1,
-    name: "Saumon Fumé d'Écosse",
-    description: "Tranches fines, salage au sel sec.",
-    price: 7.99,
-    promotion: "PROMO -20%",
-    image: "/products/products (1).png",
-  },
-  {
-    id: 2,
-    name: "Avocats filet",
-    description: "Origine certifiée, mûrs à point.",
-    price: 3.45,
-    promotion: "PROMO -20%",
-    image: "/products/products (2).png",
-  },
-  {
-    id: 3,
-    name: "Pur Jus d'Orange Pressé",
-    description: "Sans sucres ajoutés, 1L.",
-    price: 2.15,
-    promotion: "PROMO -20%",
-    image: "/products/products (3).png",
-  },
-  {
-    id: 4,
-    name: "Baguette Rustique",
-    description: "Farine label rouge, cuite sur pierre.",
-    price: 0.95,
-    promotion: "PROMO -20%",
-    image: "/products/products (4).png",
-  },
-];
+const PROMO_DISCOUNT = 0.20; // -20%
+const SECTION_SIZE = 4;
 
-const plaisirs = [
-  {
-    id: 5,
-    name: "Comté AOP 24 mois",
-    subtitle: "Affinage long",
-    price: 6.9,
-    image: "/products/products (5).png",
-  },
-  {
-    id: 6,
-    name: "Miel de Fleurs",
-    subtitle: "Récolte locale",
-    price: 4.2,
-    image: "/products/products (6).png",
-  },
-  {
-    id: 7,
-    name: "Pâtes Fraîches Farfalle",
-    subtitle: "Tradition italienne",
-    price: 2.9,
-    image: "/products/products (7).png",
-  },
-  {
-    id: 8,
-    name: "Huile d'Olive Vierge",
-    subtitle: "Première pression",
-    price: 12.5,
-    image: "/products/products (8).png",
-  },
-];
+function applyPromo(price: number) {
+  return Math.round(price * (1 - PROMO_DISCOUNT) * 100) / 100;
+}
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getProducts()
+      .then(setProducts)
+      .catch((err: Error) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const offres = products.slice(0, SECTION_SIZE);
+  const plaisirs = products.slice(SECTION_SIZE, SECTION_SIZE * 2);
+
   return (
     <main>
       <HeroSection />
@@ -82,11 +38,26 @@ export default function Home() {
             Voir tout
           </Link>
         </div>
-        <div className="home-section__grid container">
-          {offres.map((p) => (
-            <ProductCard key={p.id} {...p} />
-          ))}
-        </div>
+
+        {loading && <p className="home-section__status container">Chargement...</p>}
+        {error && <p className="home-section__status home-section__status--error container">Erreur : {error}</p>}
+
+        {!loading && !error && (
+          <div className="home-section__grid container">
+            {offres.map((p) => (
+              <ProductCard
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                description={p.description}
+                image={p.image_url ?? ""}
+                price={applyPromo(p.price)}
+                originalPrice={p.price}
+                promotion="PROMO -20%"
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       <TerroirBanner />
@@ -98,11 +69,25 @@ export default function Home() {
             Voir tout
           </Link>
         </div>
-        <div className="home-section__grid container">
-          {plaisirs.map((p) => (
-            <ProductCard key={p.id} {...p} />
-          ))}
-        </div>
+
+        {loading && <p className="home-section__status container">Chargement...</p>}
+        {error && <p className="home-section__status home-section__status--error container">Erreur : {error}</p>}
+
+        {!loading && !error && (
+          <div className="home-section__grid container">
+            {plaisirs.map((p) => (
+              <ProductCard
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                description={p.description}
+                subtitle={p.category?.name}
+                image={p.image_url ?? ""}
+                price={p.price}
+              />
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
