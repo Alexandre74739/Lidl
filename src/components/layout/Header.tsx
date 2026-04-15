@@ -18,7 +18,7 @@ export default function Header() {
     <header className="header">
       <div className="header__inner">
         <Link to="/" className="header__logo" onClick={close}>
-          Lidl Collect
+          <img src="/logo.png" alt="Lidl Collect" className="header__logo-img" />
         </Link>
 
         <div className="header__search">
@@ -39,7 +39,8 @@ export default function Header() {
             <User size={20} />
           </button>
 
-          <button
+          <Link
+            to="/panier"
             className="header__cart"
             aria-label={`Mon panier — ${count} article${count !== 1 ? "s" : ""}`}
           >
@@ -49,7 +50,7 @@ export default function Header() {
                 {count}
               </span>
             )}
-          </button>
+          </Link>
 
           <button
             className="header__burger"

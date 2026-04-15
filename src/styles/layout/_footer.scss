@@ -24,11 +24,10 @@
     gap: $space-1;
   }
 
-  &__logo {
-    font-family: $font-family;
-    font-size: $font-size-md;
-    font-weight: $font-weight-bold;
-    color: $color-primary;
+  &__logo-img {
+    height: 3rem;
+    width: auto;
+    display: block;
   }
 
   &__tagline {

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <span className="footer__logo">Lidl Collect</span>
+          <img src="/logo.png" alt="Lidl Collect" className="footer__logo-img" />
           <span className="footer__tagline">Bien choisir, sans se ruiner</span>
         </div>
 
