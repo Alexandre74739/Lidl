@@ -10,6 +10,7 @@ export default function Selection() {
 
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBlock: "1.5rem" }}>
           <ProductCard
+            id={1}
             image="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400"
             name="Saumon Fumé d'Écosse"
             description="Tranches fines, salage au sel sec."
@@ -17,6 +18,7 @@ export default function Selection() {
             promotion="PROMO -20%"
           />
           <ProductCard
+            id={2}
             image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400"
             name="Salade César"
             description="Poulet grillé, parmesan, croûtons."

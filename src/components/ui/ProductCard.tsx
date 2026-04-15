@@ -1,22 +1,29 @@
-import { useState } from "react";
+import { Plus } from "lucide-react";
 import Quantity from "./Quantity";
+import { useCart } from "../../services/CartContext";
 
 interface ProductCardProps {
+  id: number;
   image: string;
   name: string;
-  description: string;
+  description?: string;
   price: number;
   promotion?: string;
+  subtitle?: string;
 }
 
 export default function ProductCard({
+  id,
   image,
   name,
   description,
   price,
   promotion,
+  subtitle,
 }: ProductCardProps) {
-  const [quantity, setQuantity] = useState(0);
+  const { getQuantity, setQuantity } = useCart();
+  const quantity = getQuantity(id);
+  const update = (q: number) => setQuantity({ id, name, price, image }, q);
 
   return (
     <article className="product-card">
@@ -26,8 +33,11 @@ export default function ProductCard({
       </div>
 
       <div className="product-card__body">
+        {subtitle && <span className="product-card__subtitle">{subtitle}</span>}
         <h3 className="product-card__name">{name}</h3>
-        <p className="product-card__description">{description}</p>
+        {description && (
+          <p className="product-card__description">{description}</p>
+        )}
 
         <div className="product-card__footer">
           <span className="product-card__price">
@@ -37,13 +47,13 @@ export default function ProductCard({
           {quantity === 0 ? (
             <button
               className="product-card__add"
-              onClick={() => setQuantity(1)}
+              onClick={() => update(1)}
               aria-label={`Ajouter ${name} au panier`}
             >
-              Ajouter
+              <Plus size={13} aria-hidden />
             </button>
           ) : (
-            <Quantity value={quantity} onChange={setQuantity} />
+            <Quantity value={quantity} onChange={update} />
           )}
         </div>
       </div>

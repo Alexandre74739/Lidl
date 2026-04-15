@@ -1,13 +1,14 @@
+@use 'sass:color';
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
 .product-card {
-  background: $color-white;
+  background: $color-grey;
   border: 2px solid $color-grey;
   border-radius: $radius-lg;
   overflow: hidden;
   width: 100%;
-  max-width: 220px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: $shadow-sm;
@@ -56,6 +57,16 @@
     flex: 1;
   }
 
+  &__subtitle {
+    display: block;
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
   &__name {
     font-family: $font-family;
     font-size: $font-size-md;
@@ -88,7 +99,8 @@
 
   &__add {
     @include flex-center;
-    padding: $space-2 $space-4;
+    gap: $space-1;
+    padding: $space-2 $space-3;
     height: 2.25rem;
     border-radius: $radius-full;
     background: $color-secondary;
@@ -103,7 +115,7 @@
     transition: background $transition, transform $transition;
 
     &:hover {
-      background: darken($color-secondary, 8%);
+      background: color.adjust($color-secondary, $lightness: +12%);
     }
 
     &:active {

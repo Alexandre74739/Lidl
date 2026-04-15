@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
 import Selection from "./pages/client/Selection";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
 import { CookieProvider, useCookies } from "./services/CookieContext";
+import { CartProvider } from "./services/CartContext";
 
 const CookieFloatingButton = () => {
   const { openPreferences } = useCookies();
-
   return (
     <button
       className="cookie-fab"
@@ -33,11 +35,14 @@ const CookieFloatingButton = () => {
 function App() {
   return (
     <CookieProvider>
+      <CartProvider>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/selection" element={<Selection />} />
       </Routes>
-
+      <Footer />
+      </CartProvider>
       <CookieFloatingButton />
       <InstallPrompt />
     </CookieProvider>

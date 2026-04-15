@@ -6,25 +6,24 @@
     @include flex-center;
     gap: 0;
     display: inline-flex;
-    border: 2px solid $color-border;
-    border-radius: $radius-md;
+    border-radius: $radius-full;
     overflow: hidden;
 
     &--btn {
         @include flex-center;
         width: clamp(2rem, 5vw, 2.5rem);
         height: clamp(2rem, 5vw, 2.5rem);
-        background-color: $color-grey;
-        color: $color-text;
+        background-color: $color-secondary;
+        color: $color-white;
         font-size: $font-size-md;
         font-weight: $font-weight-bold;
         line-height: 1;
         border: none;
         cursor: pointer;
-        transition: background-color $transition, transform $transition;
+        transition: $transition;
 
         &:hover {
-            background-color: color.adjust($color-grey, $lightness: -6%);
+            background-color: darken($color-secondary, 10%);
         }
 
         &:active {

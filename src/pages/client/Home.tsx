@@ -1,50 +1,109 @@
-import Button from "../../components/ui/Button";
+import { Link } from "react-router";
+import ProductCard from "../../components/ui/ProductCard";
+import HeroSection from "../../components/home/HeroSection";
+import TerroirBanner from "../../components/home/TerroirBanner";
+
+// Données fictives temporaires
+const offres = [
+  {
+    id: 1,
+    name: "Saumon Fumé d'Écosse",
+    description: "Tranches fines, salage au sel sec.",
+    price: 7.99,
+    promotion: "PROMO -20%",
+    image: "/products/products (1).png",
+  },
+  {
+    id: 2,
+    name: "Avocats filet",
+    description: "Origine certifiée, mûrs à point.",
+    price: 3.45,
+    promotion: "PROMO -20%",
+    image: "/products/products (2).png",
+  },
+  {
+    id: 3,
+    name: "Pur Jus d'Orange Pressé",
+    description: "Sans sucres ajoutés, 1L.",
+    price: 2.15,
+    promotion: "PROMO -20%",
+    image: "/products/products (3).png",
+  },
+  {
+    id: 4,
+    name: "Baguette Rustique",
+    description: "Farine label rouge, cuite sur pierre.",
+    price: 0.95,
+    promotion: "PROMO -20%",
+    image: "/products/products (4).png",
+  },
+];
+
+const plaisirs = [
+  {
+    id: 5,
+    name: "Comté AOP 24 mois",
+    subtitle: "Affinage long",
+    price: 6.9,
+    image: "/products/products (5).png",
+  },
+  {
+    id: 6,
+    name: "Miel de Fleurs",
+    subtitle: "Récolte locale",
+    price: 4.2,
+    image: "/products/products (6).png",
+  },
+  {
+    id: 7,
+    name: "Pâtes Fraîches Farfalle",
+    subtitle: "Tradition italienne",
+    price: 2.9,
+    image: "/products/products (7).png",
+  },
+  {
+    id: 8,
+    name: "Huile d'Olive Vierge",
+    subtitle: "Première pression",
+    price: 12.5,
+    image: "/products/products (8).png",
+  },
+];
 
 export default function Home() {
   return (
     <main>
-      <div className="container">
-        <h1>La sélection fraiche</h1>
-        <p>
-          Découvrez nos produits premium sélectionnés avec passion pour sublimer
-          vos tables quotidiennes.
-        </p>
-        <Button to="/selection">Découvrir la sélection</Button>
-      </div>
+      <HeroSection />
 
-      <div className="about">
-        <div className="about-top">
-          <h2>Nos offres du moment</h2>
-          <Button to="/selection" variant="outline">
+      <section className="home-section">
+        <div className="home-section__header container">
+          <h2>Les Offres du Moment</h2>
+          <Link to="/selection" className="home-section__link">
             Voir tout
-          </Button>
+          </Link>
         </div>
-        <div className="about-bottom"></div>
-      </div>
+        <div className="home-section__grid container">
+          {offres.map((p) => (
+            <ProductCard key={p.id} {...p} />
+          ))}
+        </div>
+      </section>
 
-      <div className="terroir">
-        <label>Epicerie fine</label>
-        <h2>Le terroir à votre table</h2>
-        <p>
-          Une sélection rigoureuse de nos meilleurs artisans français. Des
-          produits d'exception pour des moments de dégustation inoubliables.
-        </p>
-        <Button to="/selection" variant="primary">
-          Explorer le terroir
-        </Button>
-      </div>
+      <TerroirBanner />
 
-      <div className="products">
-        <div className="products-top">
-          <h2>Plaisirs accessibles</h2>
-          <Button to="/selection" variant="outline">
+      <section className="home-section">
+        <div className="home-section__header container">
+          <h2>Plaisirs Accessibles</h2>
+          <Link to="/selection" className="home-section__link">
             Voir tout
-          </Button>
+          </Link>
         </div>
-        <div className="products-bottom">
-          
+        <div className="home-section__grid container">
+          {plaisirs.map((p) => (
+            <ProductCard key={p.id} {...p} />
+          ))}
         </div>
-      </div>
+      </section>
     </main>
   );
 }

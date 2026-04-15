@@ -1,0 +1,214 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Hero ────────────────────────────────────────────────────────────────────
+
+.hero {
+  position: relative;
+  height: clamp(360px, 80vw, 560px);
+  overflow: hidden;
+  background-color: #1a1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    filter: brightness(0.45);
+  }
+
+  // Vignette : bords plus sombres, centre dégagé
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 70% 65% at 50% 50%,
+      transparent 30%,
+      rgba($color-black, 0.55) 100%
+    );
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: $space-8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: $font-title;
+    color: $color-white;
+    font-size: clamp(2.6rem, 9vw, 5rem);
+    line-height: 0.92;
+    margin-bottom: $space-6;
+  }
+
+  p {
+    color: rgba($color-white, 0.78);
+    font-family: $font-family;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-normal;
+    margin-bottom: $space-8;
+    max-width: 42ch;
+  }
+
+  a, button {
+    @media (max-width: $bp-sm) {
+      width: 100%;
+      max-width: 260px;
+    }
+  }
+}
+
+.home-section {
+  @include container;
+  padding-block: $space-8;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: $space-6;
+
+    h2 {
+      font-family: $font-title;
+      color: $color-secondary;
+      font-size: $font-size-2xl;
+      line-height: 1;
+    }
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    text-decoration: underline;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4;
+
+    @media (min-width: $bp-md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// ─── Section (Offres + Plaisirs) ─────────────────────────────────────────────
+
+.home-section {
+  padding-block: $space-8;
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $space-6;
+
+    h2 {
+      color: $color-secondary;
+    }
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-secondary;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color $transition;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4;
+
+    @include md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// ─── Terroir banner ──────────────────────────────────────────────────────────
+
+.terroir {
+  background: $color-white;
+  padding-block: $space-12;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-8;
+    align-items: center;
+
+    @include md {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: $space-3;
+  }
+
+  &__title {
+    color: $color-secondary;
+    margin-bottom: $space-4;
+  }
+
+  &__desc {
+    color: $color-muted;
+    margin-bottom: $space-6;
+    max-width: 48ch;
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-3;
+    align-items: start;
+
+    img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: $radius-lg;
+      box-shadow: $shadow-md;
+      transition: $transition;
+
+      &:hover {
+        transform: scaleY(-4px);
+      }
+    }
+
+    img:last-child {
+      margin-top: $space-8;
+    }
+  }
+}
