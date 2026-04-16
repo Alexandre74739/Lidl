@@ -6,6 +6,7 @@ import RayonDetail from "./pages/client/RayonDetail";
 import AmbianceMatch from "./pages/client/AmbianceMatch";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
+import Cart from "./pages/client/Panier";
 import ProductDetail from "./pages/client/ProductDetail";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -52,6 +53,7 @@ function App() {
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/fidelite" element={<Fidelite />} />
         <Route path="/test-integ" element={<TestIntegPage />} />
+        <Route path="/panier" element={<Cart />} />
       </Routes>
       <Footer />
       </CartProvider>
