@@ -4,7 +4,7 @@
 // ─── Page layout (sidebar + content) ─────────────────────────────────────────
 
 .fl-page {
-  margin-top: $space-4;
+  margin: $space-4 0 80px 0;
   background: $color-white;
   padding-block: $space-8;
   min-height: 100vh;
@@ -42,14 +42,15 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: $space-6;
+    gap: $space-4;
 
     @include md {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @include xl {
-      grid-template-columns: repeat(4, 1fr);
+    > * {
+      min-width: 0;
+      overflow: hidden;
     }
   }
 }

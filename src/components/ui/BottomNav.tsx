@@ -6,7 +6,7 @@ const navItems = [
   { label: "Rayons",     to: "/rayons",    icon: LayoutGrid },
   { label: "Promotions", to: "/promotions", icon: Tag },
   { label: "Fidélité",   to: "/fidelite",  icon: Tags },
-  { label: "Compte",     to: "/compte",    icon: User },
+  { label: "Compte",     to: "/profil",    icon: User },
 ];
 
 export default function BottomNav() {
