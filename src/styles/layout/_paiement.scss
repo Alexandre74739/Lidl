@@ -7,7 +7,7 @@
   padding-top: calc(#{$header-height} + #{$space-8});
   padding-bottom: calc(#{$nav-height} + #{$space-8});
   min-height: 100dvh;
-  background: #f5f6fa;
+  background: $color-white;
 
   @include md {
     padding-bottom: $space-16;
