@@ -19,6 +19,10 @@
     }
   }
 
+  &__content {
+    padding-top: clamp(1.5rem, 4vw, 3rem);
+  }
+
   &__header {
     @include flex-between;
     margin-bottom: $space-6;
