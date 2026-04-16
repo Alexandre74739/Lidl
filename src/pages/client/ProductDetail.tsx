@@ -26,6 +26,7 @@ export default function ProductDetail() {
 
   const { getQuantity, setQuantity } = useCart();
   const quantity = product ? getQuantity(productId) : 0;
+  const [localQty, setLocalQty] = useState(1);
 
   const hasPromo = true; // à brancher sur un vrai champ back plus tard
 
@@ -128,14 +129,14 @@ export default function ProductDetail() {
 
           {/* Actions */}
           <div className="product-detail__actions">
-            <div className={`product-detail__qty-wrap${quantity > 0 ? " product-detail__qty-wrap--visible" : ""}`}>
-              <Quantity value={quantity} onChange={handleQuantity} />
+            <div className="product-detail__qty-wrap product-detail__qty-wrap--visible">
+              <Quantity value={localQty} onChange={setLocalQty} min={1} />
             </div>
             <button
               className="product-detail__add-btn"
-              onClick={() => handleQuantity(quantity === 0 ? 1 : quantity)}
+              onClick={() => handleQuantity(localQty)}
             >
-              {quantity === 0 ? "Ajouter au panier" : "Dans le panier"}
+              {quantity === 0 ? "Ajouter au panier" : "Mettre à jour"}
             </button>
           </div>
 
