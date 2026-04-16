@@ -67,7 +67,7 @@ export default function Register() {
           firstName: form.firstName,
           lastName: form.lastName,
           email: form.email,
-          phone: form.phone,
+          phone: form.phone.replace(/\s+/g, ''),
           address: form.address,
           password: form.password,
           storeId: Number(form.storeId),
