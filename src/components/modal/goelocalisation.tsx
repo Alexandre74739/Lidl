@@ -1,101 +1,128 @@
 import { useState } from "react";
-import logo from "../../../public/logo.png";
 
 const STORAGE_KEY = "lidl_geo_choice";
+const DEFAULT_MAP = "https://maps.google.com/maps?q=France&output=embed&z=5";
 
 export default function GeolocalisationModal() {
   const [visible, setVisible] = useState<boolean>(
     () => localStorage.getItem(STORAGE_KEY) === null,
   );
+  const [query, setQuery] = useState("");
+  const [mapSrc, setMapSrc] = useState(DEFAULT_MAP);
   const [loading, setLoading] = useState(false);
 
-  const handleAccept = () => {
+  const close = (choice: "accepted" | "denied") => {
+    localStorage.setItem(STORAGE_KEY, choice);
+    setVisible(false);
+  };
+
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    if (value.trim().length > 2) {
+      setMapSrc(
+        `https://maps.google.com/maps?q=${encodeURIComponent(value)}&output=embed&z=13`,
+      );
+    }
+  };
+
+  const handleGeolocate = () => {
     setLoading(true);
     navigator.geolocation.getCurrentPosition(
-      () => {
-        localStorage.setItem(STORAGE_KEY, "accepted");
+      (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        setMapSrc(
+          `https://maps.google.com/maps?q=${lat},${lng}&output=embed&z=14`,
+        );
+        setQuery("Position détectée");
         setLoading(false);
-        setVisible(false);
       },
       () => {
-        localStorage.setItem(STORAGE_KEY, "denied");
         setLoading(false);
-        setVisible(false);
       },
       { timeout: 10000 },
     );
   };
 
-  const handleDeny = () => {
-    localStorage.setItem(STORAGE_KEY, "denied");
-    setVisible(false);
+  const handleConfirm = () => {
+    close(query ? "accepted" : "denied");
   };
 
   if (!visible) return null;
 
   return (
-    <div
-      className="geo-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="geo-title"
-    >
+    <div className="geo-overlay" role="dialog" aria-modal="true" aria-labelledby="geo-title">
       <div className="geo-modal">
-        <div className="geo-modal__logo">
-          <img src={logo} alt="Lidl" />
-        </div>
 
-        <div className="geo-modal__icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
-              fill="currentColor"
+        <button
+          className="geo-modal__close"
+          onClick={() => close("denied")}
+          aria-label="Fermer"
+        >
+          ✕
+        </button>
+
+        <div className="geo-modal__form">
+          <h2 id="geo-title" className="geo-modal__title">
+            Sélectionner un magasin
+          </h2>
+
+          <p className="geo-modal__description">
+            Trouver le Lidl le plus proche de chez vous pour commencer vos courses.
+          </p>
+
+          <div className="geo-modal__search">
+            <input
+              className="geo-modal__input"
+              type="text"
+              placeholder="Code postal ou ville"
+              value={query}
+              onChange={(e) => handleQueryChange(e.target.value)}
+              aria-label="Code postal ou ville"
             />
-            <circle cx="12" cy="9" r="2.5" fill="white" />
-          </svg>
-        </div>
+            <svg className="geo-modal__search-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+            </svg>
+          </div>
 
-        <h2 id="geo-title" className="geo-modal__title">
-          Trouvez votre magasin
-        </h2>
-        <p className="geo-modal__description">
-          Autorisez la localisation pour découvrir les offres et promotions
-          disponibles dans le magasin Lidl le plus proche de chez vous.
-        </p>
-
-        <div className="geo-modal__actions">
           <button
-            className="geo-modal__btn geo-modal__btn--primary"
-            onClick={handleAccept}
+            className="geo-modal__geolocate"
+            onClick={handleGeolocate}
             disabled={loading}
           >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+              <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.8" />
+              <line x1="12" y1="2" x2="12" y2="5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <line x1="12" y1="18.5" x2="12" y2="22" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <line x1="2" y1="12" x2="5.5" y2="12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <line x1="18.5" y1="12" x2="22" y2="12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
             {loading ? (
-              <>
-                <span className="geo-spinner" aria-hidden="true" />
-                Localisation…
-              </>
+              <><span className="geo-spinner" aria-hidden="true" />Localisation…</>
             ) : (
-              <>
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                </svg>
-                Me localiser
-              </>
+              "Me géolocaliser"
             )}
           </button>
 
           <button
-            className="geo-modal__btn geo-modal__btn--secondary"
-            onClick={handleDeny}
+            className="geo-modal__confirm"
+            onClick={handleConfirm}
             disabled={loading}
           >
-            Continuer sans localisation
+            Confirmer la sélection
           </button>
         </div>
 
-        <p className="geo-modal__notice">
-          Votre position reste privée et n'est jamais partagée.
-        </p>
+        <div className="geo-modal__map">
+          <iframe
+            src={mapSrc}
+            title="Carte Google Maps"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+
       </div>
     </div>
   );

@@ -5,7 +5,7 @@
 .geo-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.45);
   @include flex-center;
   z-index: $z-modal;
   padding: $space-4;
@@ -13,133 +13,202 @@
 }
 
 .geo-modal {
-  @include card;
-  border-radius: $radius-lg;
-  padding: $space-8 $space-6 $space-6;
-  max-width: 420px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 860px;
   width: 100%;
-  text-align: center;
+  background: $color-grey;
+  border-radius: $radius-lg;
   box-shadow: $shadow-lg;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow: hidden;
 
-  &__logo {
-    margin-bottom: $space-6;
+  // Croix : haut à droite de la modal, dans la zone crème au-dessus de la carte
+  &__close {
+    position: absolute;
+    top: $space-2;
+    right: $space-6;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: $font-size-xl;
+    color: $color-primary;
+    cursor: pointer;
+    line-height: 1;
+    padding: $space-1;
+    transition: $transition;
 
-    img {
-      height: 48px;
-      width: 48px;
-      border-radius: $radius-md;
-      object-fit: contain;
+    &:hover {
+      color: lighten($color-primary, 20%);
     }
   }
 
-  &__icon-wrapper {
-    background: color.adjust($color-primary, $alpha: -0.88);
-    border-radius: 50%;
-    width: 72px;
-    height: 72px;
-    @include flex-center;
-    margin-bottom: $space-6;
-
-    svg {
-      width: 40px;
-      height: 40px;
-    }
+  // Colonne gauche : formulaire
+  &__form {
+    padding: $space-12 $space-8 $space-8;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
   }
 
   &__title {
     font-family: $font-title;
-    font-size: $font-size-xl;
+    font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
-    color: $color-primary;
-    margin: 0 0 $space-3;
+    color: $color-secondary;
     line-height: $line-height-tight;
+    margin: 0 0 $space-4;
   }
 
   &__description {
     font-family: $font-family;
-    font-size: $font-size-sm;
-    color: $color-muted;
+    font-size: $font-size-base;
+    color: $color-secondary;
     line-height: $line-height-normal;
+    font-weight: $font-weight-regular;
     margin: 0 0 $space-8;
   }
 
-  &__actions {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: $space-3;
+  &__search {
+    position: relative;
     margin-bottom: $space-4;
   }
 
-  &__btn {
+  &__input {
     width: 100%;
-    padding: $space-3 $space-6;
-    border-radius: $radius-md;
+    padding: $space-3 $space-12 $space-3 $space-6;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-full;
+    background: $color-white;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: $color-text;
+    box-sizing: border-box;
+    transition: border-color $transition, box-shadow $transition;
+
+    &::placeholder {
+      color: $color-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-secondary;
+      box-shadow: 0 0 0 3px rgba($color-secondary, 0.12);
+    }
+  }
+
+  &__search-icon {
+    position: absolute;
+    right: $space-4;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: $color-secondary;
+    pointer-events: none;
+  }
+
+  &__geolocate {
+    @include flex-center;
+    justify-content: flex-start;
+    gap: $space-2;
+    background: none;
+    border: none;
+    cursor: pointer;
     font-family: $font-family;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
-    cursor: pointer;
-    border: none;
-    @include flex-center;
-    gap: $space-2;
-    transition: opacity $transition, transform $transition;
+    color: $color-secondary;
+    padding: 0;
+    margin-top: $space-2;
+    margin-bottom: $space-12;
+    transition: opacity $transition;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: $color-secondary;
+    }
+
+    &:hover:not(:disabled) {
+      opacity: 0.7;
+    }
 
     &:disabled {
-      opacity: 0.7;
+      opacity: 0.5;
       cursor: not-allowed;
+    }
+  }
+
+  &__confirm {
+    width: 100%;
+    padding: $space-4 $space-6;
+    background: $color-primary;
+    color: $color-white;
+    border: none;
+    border-radius: $radius-full;
+    font-family: $font-family;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background $transition, transform $transition;
+
+    &:not(:disabled):hover {
+      background: color.adjust($color-primary, $lightness: 10%);
     }
 
     &:not(:disabled):active {
       transform: scale(0.98);
     }
 
-    &--primary {
-      background: $color-primary;
-      color: $color-white;
-      transition: $transition;
-
-      &:not(:disabled):hover {
-        background: lighten($color-primary, 10%);
-      }
-
-      svg {
-        width: 18px;
-        height: 18px;
-        flex-shrink: 0;
-      }
-    }
-
-    &--secondary {
-      background: $color-secondary;
-      color: $color-white;
-      border: 1px solid $color-border;
-      transition: $transition;
-
-      &:not(:disabled):hover {
-        background: lighten($color-secondary, 20%);
-      }
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
     }
   }
 
-  &__notice {
-    font-family: $font-family;
-    font-size: $font-size-xs;
-    color: $color-muted;
-    margin: 0;
+  // Colonne droite : carte encadrée — padding-top $space-12 pour dégager la croix
+  &__map {
+    padding: $space-12 $space-6 $space-6 0;
+    display: flex;
+    flex-direction: column;
+
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      border-radius: $radius-md;
+      display: block;
+      min-height: 360px;
+    }
+  }
+
+  // Mobile : une seule colonne, carte masquée
+  @media (max-width: #{$bp-md}) {
+    grid-template-columns: 1fr;
+
+    &__map {
+      display: none;
+    }
+
+    &__form {
+      padding: $space-8 $space-6 $space-8;
+    }
   }
 }
 
 .geo-spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba($color-white, 0.4);
-  border-top-color: $color-white;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba($color-secondary, 0.3);
+  border-top-color: $color-secondary;
   border-radius: $radius-full;
   flex-shrink: 0;
   animation: geo-spin 0.7s linear infinite;
+  margin-right: $space-2;
 }
 
 @keyframes geo-spin {
