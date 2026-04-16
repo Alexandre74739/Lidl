@@ -166,6 +166,14 @@
     }
   }
 
+  &__account {
+    display: none;
+
+    @include md {
+      display: flex;
+    }
+  }
+
   &__cart {
     position: relative;
 
@@ -185,38 +193,4 @@
     }
   }
 
-  &__burger {
-    @include lg {
-      display: none !important;
-    }
-  }
-
-  &__mobile-nav {
-    display: flex;
-    flex-direction: column;
-    background: $color-grey;
-    border-top: 1px solid $color-border;
-    padding: $space-3 $space-4;
-    gap: $space-1;
-
-    @include lg {
-      display: none;
-    }
-
-    a {
-      padding: $space-3 $space-4;
-      font-family: $font-family;
-      font-size: $font-size-md;
-      font-weight: $font-weight-bold;
-      color: $color-secondary;
-      text-decoration: none;
-      border-radius: $radius-md;
-      transition: background $transition, color $transition;
-
-      &:hover {
-        background: rgba($color-secondary, 0.07);
-        color: $color-primary;
-      }
-    }
-  }
 }
