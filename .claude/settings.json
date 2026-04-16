@@ -4,7 +4,9 @@
       "Bash(git merge *)",
       "Bash(git checkout *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git config *)",
+      "Bash(gh auth *)"
     ],
     "additionalDirectories": [
       "/home/perez/nextJS/lidl/src/pages/client"
