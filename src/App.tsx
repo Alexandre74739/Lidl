@@ -6,11 +6,13 @@ import AmbianceMatch from "./pages/client/AmbianceMatch";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
 import ProductDetail from "./pages/client/ProductDetail";
+import Register from "./pages/client/Register";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
 import { CookieProvider, useCookies } from "./services/CookieContext";
 import { CartProvider } from "./services/CartContext";
+import { AuthProvider } from "./services/AuthContext";
 
 const CookieFloatingButton = () => {
   const { openPreferences } = useCookies();
@@ -40,19 +42,22 @@ const CookieFloatingButton = () => {
 function App() {
   return (
     <CookieProvider>
-      <CartProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/rayons" element={<Rayons />} />
-        <Route path="/rayons/:id" element={<RayonDetail />} />
-        <Route path="/ambiances/match" element={<AmbianceMatch />} />
-        <Route path="/promotions" element={<Promotions />} />
-        <Route path="/fidelite" element={<Fidelite />} />
-      </Routes>
-      <Footer />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/rayons" element={<Rayons />} />
+            <Route path="/rayons/:id" element={<RayonDetail />} />
+            <Route path="/ambiances/match" element={<AmbianceMatch />} />
+            <Route path="/promotions" element={<Promotions />} />
+            <Route path="/fidelite" element={<Fidelite />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+          <Footer />
+        </CartProvider>
+      </AuthProvider>
       <CookieFloatingButton />
       <InstallPrompt />
     </CookieProvider>

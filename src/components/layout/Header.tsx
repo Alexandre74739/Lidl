@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import { useCart } from "../../services/CartContext";
+import { useAuth } from "../../services/AuthContext";
 import logoLidl from "../../assets/images/Logo_Lidl.svg";
 
 const navLinks = [
@@ -13,6 +14,7 @@ const navLinks = [
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false);
   const { count } = useCart();
+  const { user } = useAuth();
   const close = () => setNavOpen(false);
 
   return (
@@ -36,9 +38,13 @@ export default function Header() {
         </nav>
 
         <div className="header__actions">
-          <button aria-label="Mon compte">
-            <User size={20} />
-          </button>
+          {user ? (
+            <span className="header__username">{user.firstName}</span>
+          ) : (
+            <Link to="/register" aria-label="Créer un compte">
+              <User size={20} />
+            </Link>
+          )}
 
           <button
             className="header__cart"
