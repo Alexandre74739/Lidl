@@ -3,11 +3,13 @@
 
 .footer {
   background: $color-grey;
-  border-top: 1.5px solid $color-border;
-  padding-bottom: $nav-height; // espace PWA nav mobile
+  border-top: 0.5px solid $color-primary;
+  border-radius: 50px 50px 0 0;
+  color: $color-secondary;
 
-  @include md {
-    padding-bottom: 0;
+  // Masqué sur mobile : remplacé par la bottom nav
+  @media (max-width: #{$bp-md}) {
+    display: none;
   }
 
   &__inner {

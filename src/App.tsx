@@ -11,6 +11,7 @@ import ProductDetail from "./pages/client/ProductDetail";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
+import BottomNav from "./components/ui/BottomNav";
 import GeolocalisationModal from "./components/modal/goelocalisation";
 import { CookieProvider, useCookies } from "./services/CookieContext";
 import { CartProvider } from "./services/CartContext";
@@ -60,6 +61,7 @@ function App() {
       </CartProvider>
       <CookieFloatingButton />
       <InstallPrompt />
+      <BottomNav />
       <GeolocalisationModal />
     </CookieProvider>
   );
