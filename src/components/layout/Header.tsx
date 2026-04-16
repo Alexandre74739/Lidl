@@ -1,18 +1,16 @@
-import { useState } from "react";
-import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
+import { Search, ShoppingCart, User } from "lucide-react";
 import { Link } from "react-router";
 import { useCart } from "../../services/CartContext";
 import { useAuth } from "../../services/AuthContext";
 import logoLidl from "../../assets/images/Logo_Lidl.svg";
 
 const navLinks = [
-  { label: "Rayons", to: "/rayons" },
-  { label: "Promotions", to: "promotions" },
-  { label: "Fidélité", to: "fidelite" },
+  { label: "Rayons",     to: "/rayons" },
+  { label: "Promotions", to: "/promotions" },
+  { label: "Fidélité",   to: "/fidelite" },
 ];
 
 export default function Header() {
-  const [navOpen, setNavOpen] = useState(false);
   const { count } = useCart();
   const { user } = useAuth();
   const close = () => setNavOpen(false);
@@ -58,27 +56,8 @@ export default function Header() {
               </span>
             )}
           </Link>
-
-          <button
-            className="header__burger"
-            aria-label={navOpen ? "Fermer le menu" : "Ouvrir le menu"}
-            aria-expanded={navOpen}
-            onClick={() => setNavOpen((o) => !o)}
-          >
-            {navOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
         </div>
       </div>
-
-      {navOpen && (
-        <nav className="header__mobile-nav" aria-label="Navigation mobile">
-          {navLinks.map(({ label, to }) => (
-            <Link key={label} to={to} onClick={close}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-      )}
     </header>
   );
 }
