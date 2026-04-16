@@ -6,66 +6,76 @@
 
 .hero {
   position: relative;
-  height: clamp(360px, 80vw, 560px);
+  width: 80%;
+  max-width: $container-width;
+  margin: 75px auto 50px;
+  border-radius: 0 50px 50px 0;
+  height: clamp(350px, 45vw, 550px);
   overflow: hidden;
-  background-color: #1a1200;
+  background-color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
 
   &__bg {
     position: absolute;
     inset: 0;
-    width: 100%;
+    width: 100%;  
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: right center;
     z-index: 0;
-    filter: brightness(0.45);
   }
 
-  // Vignette : bords plus sombres, centre dégagé
+  // Dégradé pour lisibilité
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      ellipse 70% 65% at 50% 50%,
-      transparent 30%,
-      rgba($color-black, 0.55) 100%
+    background: linear-gradient(
+      to right,
+      white 0%,
+      rgba(255, 255, 255, 0.95) 25%,
+      rgba(255, 255, 255, 0.7) 35%,
+      transparent 70%
     );
     z-index: 1;
+    pointer-events: none;
   }
 
   &__content {
     position: relative;
     z-index: 2;
-    text-align: center;
-    padding: $space-8;
+    text-align: left;
+    padding: $space-6 $space-6 $space-6 clamp($space-4, 5vw, $space-16);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    max-width: clamp(280px, 60%, 550px);
   }
 
   h1 {
     font-family: $font-title;
-    color: $color-white;
-    font-size: clamp(2.6rem, 9vw, 5rem);
-    line-height: 1;
-    margin-bottom: $space-6;
+    color: $color-secondary;
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    margin-bottom: $space-4;
   }
 
   p {
-    color: rgba($color-white, 0.78);
+    color: $color-secondary;
     font-family: $font-family;
-    font-size: $font-size-md;
-    font-weight: $font-weight-medium;
+    font-size: clamp(0.9rem, 2vw, 1.125rem);
+    font-weight: $font-weight-regular;
     line-height: $line-height-normal;
     margin-bottom: $space-8;
-    max-width: 42ch;
+    max-width: 40ch;
   }
 
   a, button {
+    position: relative;
+    z-index: 3;
     @media (max-width: $bp-sm) {
       width: 100%;
       max-width: 260px;

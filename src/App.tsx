@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
-// import Selection from "./pages/client/Selection";
 import TestIntegPage from "./test-integ-back/TestIntegPage";
 import Rayons from "./pages/client/Rayons";
+import RayonDetail from "./pages/client/RayonDetail";
+import AmbianceMatch from "./pages/client/AmbianceMatch";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
 import Cart from "./pages/client/Panier";
+import ProductDetail from "./pages/client/ProductDetail";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
@@ -41,16 +43,19 @@ function App() {
   return (
     <CookieProvider>
       <CartProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/test-integ" element={<TestIntegPage />} />
-          <Route path="/rayons" element={<Rayons />} />
-          <Route path="/promotions" element={<Promotions />} />
-          <Route path="/fidelite" element={<Fidelite />} />
-          <Route path="/panier" element={<Cart />} />
-        </Routes>
-        <Footer />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/rayons" element={<Rayons />} />
+        <Route path="/rayons/:id" element={<RayonDetail />} />
+        <Route path="/ambiances/match" element={<AmbianceMatch />} />
+        <Route path="/promotions" element={<Promotions />} />
+        <Route path="/fidelite" element={<Fidelite />} />
+        <Route path="/test-integ" element={<TestIntegPage />} />
+        <Route path="/panier" element={<Cart />} />
+      </Routes>
+      <Footer />
       </CartProvider>
       <CookieFloatingButton />
       <InstallPrompt />
