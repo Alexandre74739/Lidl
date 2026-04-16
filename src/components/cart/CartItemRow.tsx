@@ -21,9 +21,6 @@ export default function CartItemRow({ item }: CartItemRowProps) {
           <span className="cart-item__badge">{item.subtitle}</span>
         )}
         <h3 className="cart-item__name">{item.name}</h3>
-        {item.description && (
-          <p className="cart-item__description">{item.description}</p>
-        )}
         <div className="cart-item__footer">
           <Quantity value={item.quantity} onChange={update} />
           <div className="cart-item__prices">
