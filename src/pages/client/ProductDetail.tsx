@@ -27,6 +27,8 @@ export default function ProductDetail() {
   const { getQuantity, setQuantity } = useCart();
   const quantity = product ? getQuantity(productId) : 0;
 
+  const hasPromo = true; // à brancher sur un vrai champ back plus tard
+
   useEffect(() => {
     if (!productId) return;
     setLoading(true);
@@ -38,8 +40,17 @@ export default function ProductDetail() {
 
   const handleQuantity = (q: number) => {
     if (!product) return;
+    const price = hasPromo ? applyPromo(product.price) : product.price;
     setQuantity(
-      { id: productId, name: product.name, price: promoPrice, image: product.image_url ?? "" },
+      {
+        id: productId,
+        name: product.name,
+        price,
+        originalPrice: hasPromo ? product.price : undefined,
+        image: product.image_url ?? "",
+        description: product.description,
+        subtitle: product.category?.name,
+      },
       q
     );
   };
@@ -47,7 +58,6 @@ export default function ProductDetail() {
   if (loading) return <div className="product-detail__loading container">Chargement du produit...</div>;
   if (error || !product) return <div className="product-detail__error container">Produit introuvable.</div>;
 
-  const hasPromo = true; // à brancher sur un vrai champ back plus tard
   const promoPrice = hasPromo ? applyPromo(product.price) : product.price;
   const pricePerKg = product.weight && product.weight > 0
     ? promoPrice / product.weight
@@ -61,7 +71,7 @@ export default function ProductDetail() {
         <ChevronRight size={14} />
         {product.category && (
           <>
-            <span>{product.category.name}</span>
+            <Link to={`/rayons/${product.category.id}`}>{product.category.name}</Link>
             <ChevronRight size={14} />
           </>
         )}
