@@ -7,6 +7,7 @@ import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
 import Cart from "./pages/client/Panier";
 import Paiement from "./pages/client/paiement";
+import PaiementSucces from "./pages/client/PaiementSucces";
 import ProductDetail from "./pages/client/ProductDetail";
 import Register from "./pages/client/Register";
 import Profil from "./pages/client/Profil";
@@ -62,6 +63,7 @@ function App() {
             <Route path="/profil" element={<Profil />} />
             <Route path="/panier" element={<Cart />} />
             <Route path="/paiement" element={<Paiement />} />
+            <Route path="/paiement/succes" element={<PaiementSucces />} />
           </Routes>
           <Footer />
         </CartProvider>
