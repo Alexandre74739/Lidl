@@ -20,13 +20,13 @@
   &__sidebar {
     width: 25%;
     flex-shrink: 0;
+    // L'arrière-plan crème/jaune de la maquette (utilise $color-grey)
     background: $color-grey;
     border-radius: $radius-lg;
     padding: $space-6 $space-4;
     display: flex;
     flex-direction: column;
     gap: $space-4;
-    box-shadow: $shadow-sm;
 
     @media (max-width: #{$bp-md}) {
       display: none;
@@ -35,7 +35,7 @@
 
   &__sidebar-header {
     padding-bottom: $space-3;
-    border-bottom: 1px solid color.adjust($color-grey, $lightness: -8%);
+    border-bottom: 1px solid color.adjust($color-secondary, $lightness: +60%);
   }
 
   &__sidebar-title {
@@ -125,16 +125,17 @@
   &__title {
     font-family: $font-title;
     font-weight: $font-weight-bold;
-    font-size: clamp(2.2rem, 6vw, 3.2rem);
-    color: $color-secondary;
-    line-height: 1.05;
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    color: $color-secondary; // Blue
+    line-height: 0.95; // tight overlap
     margin: 0 0 $space-3;
+    text-transform: capitalize; // to ensure 'Informations' has capital 'I' despite lowercase in code
   }
 
   &__divider {
-    width: 48px;
+    width: 64px;
     height: 4px;
-    background: $color-primary;
+    background: $color-primary; // Orange
     border-radius: $radius-full;
     margin-bottom: $space-8;
   }
@@ -161,14 +162,15 @@
   &__card {
     background: $color-white;
     border-radius: $radius-lg;
-    padding: $space-6;
-    box-shadow: $shadow-sm;
+    padding: $space-6 $space-8;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.03); // Lighter shadow
   }
 
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $space-4;
+    column-gap: $space-8;
+    row-gap: $space-6;
 
     @media (max-width: #{$bp-sm}) {
       grid-template-columns: 1fr;
@@ -178,26 +180,28 @@
   &__field {
     display: flex;
     flex-direction: column;
-    gap: $space-1;
+    gap: $space-2;
   }
 
   &__field-label {
     font-family: $font-accent;
     font-size: $font-size-xs;
     font-weight: $font-weight-bold;
-    color: $color-muted;
+    color: $color-secondary; // Make them blue or muted blue
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding-left: $space-3;
+    padding-left: $space-1;
   }
 
   &__field-value {
     padding: $space-3 $space-4;
-    background: color.adjust($color-muted, $lightness: +45%);
+    background: $color-grey; // use the light cream background instead of gray? No, the design shows light gray `#efefef`. Maybe `#f0f0f0` or similar. Let's make it a very light solid gray.
+    background: #F4F4F4;
     border-radius: $radius-full;
     font-family: $font-family;
     font-size: $font-size-sm;
-    color: $color-text;
+    color: $color-secondary; // The mock text looks dark gray/blue
+    font-weight: $font-weight-medium;
 
     &--empty {
       color: $color-muted;
@@ -208,19 +212,19 @@
   &__store-card {
     background: $color-white;
     border-radius: $radius-lg;
-    padding: $space-4 $space-6;
-    box-shadow: $shadow-sm;
+    padding: $space-6 $space-8;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.03); // Lighter shadow
     display: flex;
     align-items: center;
-    gap: $space-4;
+    gap: $space-6;
   }
 
   &__store-pin {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: color.adjust($color-secondary, $lightness: +52%);
-    color: $color-secondary;
+    background: $color-grey; // Cream/yellow background for the map pin circle
+    color: $color-secondary; // Blue pin icon
     @include flex-center;
     flex-shrink: 0;
   }
@@ -233,9 +237,26 @@
   &__store-name {
     font-family: $font-accent;
     font-weight: $font-weight-bold;
-    font-size: $font-size-md;
-    color: $color-secondary;
+    font-size: $font-size-md; // slightly bigger
+    color: $color-secondary; // Blue text
     margin: 0 0 $space-1;
+  }
+
+  &__store-status {
+    font-size: $font-size-xs;
+    color: $color-success; // Green status
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    margin: 0 0 $space-1;
+    font-weight: $font-weight-medium;
+  }
+
+  &__store-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $color-success;
   }
 
   &__store-address {
@@ -252,39 +273,48 @@
 
   // ── Bouton outline (Changer de magasin) ──────────────────
   &__btn-outline {
-    padding: $space-2 $space-4;
-    border: 2px solid $color-secondary;
+    padding: $space-3 $space-6;
+    border: 2px solid $color-secondary; // Blue border
     border-radius: $radius-full;
     background: transparent;
     font-family: $font-accent;
     font-size: $font-size-xs;
     font-weight: $font-weight-bold;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $color-secondary;
+    color: $color-secondary; // Blue text
     cursor: default;
     white-space: nowrap;
     flex-shrink: 0;
+
+    &:hover {
+      background: rgba(17, 79, 203, 0.05); // slight blue tint
+    }
   }
 
   // ── Footer avec bouton submit ─────────────────────────────
   &__footer {
     display: flex;
     justify-content: flex-end;
-    margin-top: $space-4;
+    margin-top: $space-12; // push it a bit further down
   }
 
   &__btn-submit {
-    padding: $space-3 $space-8;
-    background: $color-primary;
+    padding: $space-4 $space-8;
+    background: $color-primary; // Orange
     color: $color-white;
     border: none;
     border-radius: $radius-full;
     font-family: $font-accent;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     cursor: default;
+    box-shadow: 0px 4px 12px rgba(249, 122, 10, 0.2); // orange shadow
+
+    &:hover {
+      background: color.adjust($color-primary, $lightness: -5%);
+    }
   }
 }
