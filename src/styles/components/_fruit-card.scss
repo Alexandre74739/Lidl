@@ -102,8 +102,10 @@
 
   &__footer {
     @include flex-between;
+    align-items: center;
     margin-top: auto;
     padding-top: $space-3;
+    min-height: clamp(2rem, 5vw, 2.5rem);
   }
 
   &__price-group {
@@ -131,10 +133,19 @@
     }
   }
 
+  // Conteneur réservant la largeur du Quantity en permanence
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: calc(clamp(2rem, 5vw, 2.5rem) * 3);
+    flex-shrink: 0;
+  }
+
   &__add {
     @include flex-center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: clamp(2rem, 5vw, 2.5rem);
+    height: clamp(2rem, 5vw, 2.5rem);
     border-radius: $radius-full;
     background: $color-secondary;
     color: $color-white;

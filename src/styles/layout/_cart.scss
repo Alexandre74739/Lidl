@@ -302,7 +302,7 @@
     transition: background $transition;
 
     &:hover {
-      background: darken(#F97A0A, 10%);
+      background: lighten( $color-primary, 10%);
     }
   }
 }

@@ -130,7 +130,7 @@
       font-family: $font-family;
       font-size: $font-size-sm;
       color: $color-text;
-      background: color.adjust($color-muted, $lightness: +45%); // Gris très très clair
+      background: lighten($color-muted, 50%); // Gris très très clair
       transition: border-color $transition, box-shadow $transition;
       width: 100%;
 
@@ -255,37 +255,28 @@
     margin: 0;
   }
 
-  // ── Bouton soumettre ────────────────────────────────────
   &__submit {
-    width: 100%;
-    padding: $space-3 $space-6;
-    background: $color-primary;
-    color: $color-white;
-    border: none;
-    border-radius: $radius-full;
-    font-family: $font-accent;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-bold;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: background $transition, opacity $transition, transform $transition;
+    font-family: $font-accent;
+  }
 
-    &:hover:not(:disabled) {
-      background: color.adjust($color-primary, $lightness: +8%);
-    }
+  // ── Lien connexion ───────────────────────────────────────
+  &__login-link {
+    text-align: center;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: $color-muted;
+    margin-top: $space-2;
 
-    &:active:not(:disabled) {
-      transform: scale(0.98);
-    }
+    a {
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+      text-decoration: none;
+      transition: color $transition;
 
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    &:focus-visible {
-      @include focus-ring;
+      &:hover {
+        color: $color-primary;
+      }
     }
   }
 }

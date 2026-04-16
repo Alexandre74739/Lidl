@@ -56,17 +56,19 @@ export default function FruitCard({
             )}
           </div>
 
-          {quantity === 0 ? (
-            <button
-              className="fruit-card__add"
-              onClick={() => update(1)}
-              aria-label={`Ajouter ${name} au panier`}
-            >
-              <ShoppingCart size={16} aria-hidden />
-            </button>
-          ) : (
-            <Quantity value={quantity} onChange={update} />
-          )}
+          <div className="fruit-card__action">
+            {quantity === 0 ? (
+              <button
+                className="fruit-card__add"
+                onClick={() => update(1)}
+                aria-label={`Ajouter ${name} au panier`}
+              >
+                <ShoppingCart size={16} aria-hidden />
+              </button>
+            ) : (
+              <Quantity value={quantity} onChange={update} />
+            )}
+          </div>
         </div>
       </div>
     </article>
