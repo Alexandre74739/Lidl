@@ -84,10 +84,63 @@
     }
   }
 
+  &__username {
+    font-family: $font-accent;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    white-space: nowrap;
+    padding: $space-2 $space-3;
+  }
+
   &__actions {
     display: flex;
     align-items: center;
     gap: $space-1;
+
+    a {
+      @include flex-center;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $color-secondary;
+      border-radius: $radius-full;
+      transition: background $transition, color $transition;
+      text-decoration: none;
+
+      &:hover {
+        background: $color-grey;
+        color: $color-primary;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    button {
+      @include flex-center;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $color-secondary;
+      border-radius: $radius-full;
+      transition: background $transition, color $transition;
+      text-decoration: none;
+
+      &:hover {
+        background: $color-grey;
+        color: $color-primary;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
 
     button,
     a {

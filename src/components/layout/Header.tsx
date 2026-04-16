@@ -1,7 +1,8 @@
 import { Search, ShoppingCart, User } from "lucide-react";
 import { Link } from "react-router";
 import { useCart } from "../../services/CartContext";
-import logoLidl from "../../../public/logo.png";
+import { useAuth } from "../../services/AuthContext";
+import logoLidl from "../../assets/images/Logo_Lidl.svg";
 
 const navLinks = [
   { label: "Rayons",     to: "/rayons" },
@@ -11,11 +12,13 @@ const navLinks = [
 
 export default function Header() {
   const { count } = useCart();
+  const { user } = useAuth();
+  const close = () => setNavOpen(false);
 
   return (
     <header className="header">
       <div className="header__inner">
-        <Link to="/" className="header__logo">
+        <Link to="/" className="header__logo" onClick={close}>
           <img src={logoLidl} alt="Logo Lidl" width="100" height="auto" />
         </Link>
 
@@ -33,9 +36,13 @@ export default function Header() {
         </nav>
 
         <div className="header__actions">
-          <button className="header__account" aria-label="Mon compte">
-            <User size={20} />
-          </button>
+          {user ? (
+            <span className="header__username">{user.firstName}</span>
+          ) : (
+            <Link to="/register" aria-label="Créer un compte">
+              <User size={20} />
+            </Link>
+          )}
 
           <Link
             to="/panier"

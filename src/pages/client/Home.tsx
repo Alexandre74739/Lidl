@@ -34,7 +34,7 @@ export default function Home() {
       <section className="home-section">
         <div className="home-section__header container">
           <h2>Les Offres du Moment</h2>
-          <Link to="/selection" className="home-section__link">
+          <Link to="/rayons" className="home-section__link">
             Voir tout
           </Link>
         </div>

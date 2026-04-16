@@ -1,12 +1,13 @@
 import { Share2, Star } from "lucide-react";
 import { Link } from "react-router";
+import LogoLidl from "../../assets/images/Logo_Lidl.svg";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <img src="/logo.png" alt="Lidl Collect" className="footer__logo-img" />
+          <img src={LogoLidl} alt="Logo Lidl" width="150" height="auto" />
           <span className="footer__tagline">Bien choisir, sans se ruiner</span>
         </div>
 
@@ -24,8 +25,8 @@ export default function Footer() {
             <Star size={18} />
           </button>
         </div>
-      </div>
 
+      </div>
       <div className="footer__copy">
         © 2026 Lidl Collect. Tous droits réservés.
       </div>
