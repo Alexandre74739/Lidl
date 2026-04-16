@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { User, ShoppingBag, Gift, LogOut, MapPin, BadgeCheck } from 'lucide-react';
+import { User, ShoppingBag, Gift, LogOut, MapPin, Store, IdCard } from 'lucide-react';
 import { useAuth } from '../../services/AuthContext';
 import { apiFetch } from '../../services/api';
 
@@ -77,7 +77,7 @@ export default function Profil() {
           {/* Données personnelles */}
           <section className="profil__section">
             <h2 className="profil__section-title">
-              <BadgeCheck size={18} aria-hidden />
+              <IdCard size={18} aria-hidden />
               DONNÉES PERSONNELLES
             </h2>
             <div className="profil__card">
@@ -105,7 +105,7 @@ export default function Profil() {
           {/* Magasin préféré */}
           <section className="profil__section">
             <h2 className="profil__section-title">
-              <MapPin size={18} aria-hidden />
+              <Store size={18} aria-hidden />
               MON MAGASIN PRÉFÉRÉ
             </h2>
             {store ? (
@@ -115,6 +115,9 @@ export default function Profil() {
                 </div>
                 <div className="profil__store-info">
                   <p className="profil__store-name">{store.name}</p>
+                  <p className="profil__store-status">
+                    <span className="profil__store-status-dot"></span>Ouvert jusqu'à 21h00
+                  </p>
                   {store.address && (
                     <p className="profil__store-address">{store.address}</p>
                   )}
