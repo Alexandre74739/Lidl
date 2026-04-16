@@ -3,7 +3,7 @@
 @use '../abstracts/mixins' as *;
 
 $cc-primary-hover: color.adjust($color-primary, $lightness: -8%);
-$cc-secondary-hover: color.adjust($color-border, $lightness: -6%);
+$cc-secondary-hover: color.adjust($color-secondary, $lightness: -10%);
 
 :root {
   --cc-font-family: #{$font-family};
@@ -25,12 +25,12 @@ $cc-secondary-hover: color.adjust($color-border, $lightness: -6%);
   --cc-btn-primary-hover-color: #{$color-white};
   --cc-btn-primary-hover-border-color: #{$cc-primary-hover};
 
-  // Bouton secondaire → gris clair
-  --cc-btn-secondary-bg: #{$color-grey};
-  --cc-btn-secondary-color: #{$color-black};
-  --cc-btn-secondary-border-color: #{$color-border};
+  // Bouton secondaire → bleu Lidl
+  --cc-btn-secondary-bg: #{$color-secondary};
+  --cc-btn-secondary-color: #{$color-white};
+  --cc-btn-secondary-border-color: #{$color-secondary};
   --cc-btn-secondary-hover-bg: #{$cc-secondary-hover};
-  --cc-btn-secondary-hover-color: #{$color-black};
+  --cc-btn-secondary-hover-color: #{$color-white};
   --cc-btn-secondary-hover-border-color: #{$cc-secondary-hover};
 
   // Toggle → orange quand activé

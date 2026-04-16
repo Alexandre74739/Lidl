@@ -35,7 +35,7 @@ export const CookieProvider = ({ children }: { children: React.ReactNode }) => {
         translations: {
           fr: {
             consentModal: {
-              title: "Lidl Drive : Votre vie privée",
+              title: "Lidl Collect : Votre vie privée",
               description:
                 "Nous utilisons des cookies pour assurer le bon fonctionnement du site et analyser nos performances.",
               acceptAllBtn: "Tout accepter",
@@ -58,7 +58,7 @@ export const CookieProvider = ({ children }: { children: React.ReactNode }) => {
                 {
                   title: "Statistiques",
                   description:
-                    "Ces cookies nous aident à mesurer l'audience et à améliorer votre expérience sur Lidl Drive.",
+                    "Ces cookies nous aident à mesurer l'audience et à améliorer votre expérience sur Lidl Collect.",
                   linkedCategory: "analytics",
                 },
               ],

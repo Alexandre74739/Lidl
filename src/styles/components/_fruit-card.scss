@@ -1,0 +1,143 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Fruit Card (Figma DA) ──────────────────────────────────────────────────
+// Transparent card, no border/shadow, generous image radius,
+// blue cart button, inline price + barré, orange promo badge.
+
+.fruit-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transition: transform $transition;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  // ── Image ──────────────────────────────────────────────────────────────────
+
+  &__image-wrapper {
+    position: relative;
+    background: transparent;
+    border-radius: 24px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: $space-3;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    mix-blend-mode: multiply;
+  }
+
+  &__badge {
+    position: absolute;
+    top: $space-3;
+    left: $space-3;
+    z-index: 1;
+    background: $color-primary;
+    color: $color-white;
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    padding: $space-1 $space-3;
+    border-radius: $radius-full;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  // ── Body ───────────────────────────────────────────────────────────────────
+
+  &__body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    flex: 1;
+  }
+
+  &__name {
+    font-family: $font-family;
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    line-height: $line-height-tight;
+    margin: 0;
+  }
+
+  &__description {
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    color: $color-muted;
+    line-height: $line-height-normal;
+    margin: 0;
+  }
+
+  // ── Footer (price + add) ──────────────────────────────────────────────────
+
+  &__footer {
+    @include flex-between;
+    margin-top: auto;
+    padding-top: $space-3;
+  }
+
+  &__price-group {
+    display: flex;
+    align-items: baseline;
+    gap: $space-2;
+  }
+
+  &__price {
+    font-family: $font-family;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+
+    &--promo {
+      color: $color-primary;
+    }
+
+    &--original {
+      font-family: $font-family;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-regular;
+      color: $color-muted;
+      text-decoration: line-through;
+    }
+  }
+
+  &__add {
+    @include flex-center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: $radius-full;
+    background: $color-secondary;
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background $transition, transform $transition;
+
+    &:hover {
+      background: darken($color-secondary, 8%);
+    }
+
+    &:active {
+      transform: scale(0.93);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}

@@ -5,12 +5,14 @@ import RayonDetail from "./pages/client/RayonDetail";
 import AmbianceMatch from "./pages/client/AmbianceMatch";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
+import FruitLegumes from "./pages/client/fruit_legumes";
 import Cart from "./pages/client/Panier";
 import ProductDetail from "./pages/client/ProductDetail";
 import Register from "./pages/client/Register";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
+import GeolocalisationModal from "./components/modal/goelocalisation";
 import { CookieProvider, useCookies } from "./services/CookieContext";
 import { CartProvider } from "./services/CartContext";
 import { AuthProvider } from "./services/AuthContext";
@@ -54,14 +56,15 @@ function App() {
             <Route path="/ambiances/match" element={<AmbianceMatch />} />
             <Route path="/promotions" element={<Promotions />} />
             <Route path="/fidelite" element={<Fidelite />} />
+            <Route path="/rayons/alimentaire" element={<FruitLegumes />} />
             <Route path="/register" element={<Register />} />
             <Route path="/panier" element={<Cart />} />
-      </Routes>
           <Footer />
         </CartProvider>
       </AuthProvider>
       <CookieFloatingButton />
       <InstallPrompt />
+      <GeolocalisationModal />
     </CookieProvider>
   );
 }

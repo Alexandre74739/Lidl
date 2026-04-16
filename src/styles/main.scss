@@ -10,6 +10,7 @@
 @use 'layout/product-detail';
 @use 'layout/rayons';
 @use 'layout/register';
+@use 'layout/fruit-legumes';
 @use 'layout/cart';
 
 // Composants
@@ -19,4 +20,6 @@
 @use 'components/drawer-menu';
 @use 'components/cookie';
 @use 'components/product-card';
+@use 'components/fruit-card';
 @use 'components/install-prompt';
+@use 'components/geo-modal';

@@ -1,0 +1,226 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Page layout (sidebar + content) ─────────────────────────────────────────
+
+.fl-page {
+  background: #F0F4F8;
+  padding-block: $space-8;
+  min-height: 100vh;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-8;
+
+    @include lg {
+      grid-template-columns: 200px 1fr;
+    }
+  }
+
+  &__content {
+    padding-top: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  &__header {
+    @include flex-between;
+    margin-bottom: $space-6;
+    flex-wrap: wrap;
+    gap: $space-4;
+  }
+
+  &__title {
+    font-family: $font-title;
+    color: $color-secondary;
+    font-size: $font-size-3xl;
+    line-height: $line-height-tight;
+    margin: 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-6;
+
+    @include md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// ─── Sidebar Navigation ──────────────────────────────────────────────────────
+
+.sidebar-nav {
+  display: none;
+
+  @include lg {
+    display: block;
+    position: sticky;
+    top: calc($header-height + $space-8);
+    align-self: start;
+  }
+
+  &__title {
+    font-family: $font-title;
+    font-size: $font-size-xl;
+    color: $color-secondary;
+    margin: 0 0 $space-1 0;
+  }
+
+  &__subtitle {
+    display: block;
+    font-family: $font-family;
+    font-size: 0.65rem;
+    font-weight: $font-weight-medium;
+    color: $color-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: $space-6;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    padding: $space-2 $space-4;
+    border-radius: $radius-full;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-secondary;
+    text-decoration: none;
+    transition: background $transition, color $transition;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: rgba($color-secondary, 0.08);
+    }
+
+    &--active {
+      background: $color-secondary;
+      color: $color-white;
+      font-weight: $font-weight-bold;
+
+      svg { color: $color-white; }
+
+      &:hover {
+        background: $color-secondary;
+      }
+    }
+  }
+}
+
+// ─── Breadcrumb ──────────────────────────────────────────────────────────────
+
+.fl-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-3;
+  font-family: $font-family;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &__link {
+    color: $color-muted;
+    text-decoration: none;
+    transition: color $transition;
+
+    &:hover {
+      color: $color-secondary;
+    }
+  }
+
+  &__sep {
+    color: $color-muted;
+  }
+
+  &__current {
+    color: $color-secondary;
+    font-weight: $font-weight-bold;
+  }
+}
+
+// ─── Sort Dropdown ───────────────────────────────────────────────────────────
+
+.fl-sort {
+  position: relative;
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-secondary;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-full;
+    padding: $space-2 $space-4;
+    cursor: pointer;
+    transition: border-color $transition;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: $color-secondary;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + $space-2);
+    right: 0;
+    z-index: $z-overlay;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    box-shadow: $shadow-md;
+    list-style: none;
+    padding: $space-2 0;
+    margin: 0;
+    min-width: 200px;
+  }
+
+  &__option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: $color-text;
+    background: none;
+    border: none;
+    padding: $space-2 $space-4;
+    cursor: pointer;
+    transition: background $transition, color $transition;
+
+    &:hover {
+      background: rgba($color-secondary, 0.06);
+      color: $color-secondary;
+    }
+
+    &--active {
+      color: $color-secondary;
+      font-weight: $font-weight-bold;
+    }
+  }
+}
