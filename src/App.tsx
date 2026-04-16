@@ -9,6 +9,7 @@ import Cart from "./pages/client/Panier";
 import Paiement from "./pages/client/paiement";
 import ProductDetail from "./pages/client/ProductDetail";
 import Register from "./pages/client/Register";
+import Profil from "./pages/client/Profil";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import InstallPrompt from "./components/ui/InstallPrompt";
@@ -58,6 +59,7 @@ function App() {
             <Route path="/promotions" element={<Promotions />} />
             <Route path="/fidelite" element={<Fidelite />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profil" element={<Profil />} />
             <Route path="/panier" element={<Cart />} />
             <Route path="/paiement" element={<Paiement />} />
           </Routes>

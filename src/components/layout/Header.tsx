@@ -37,7 +37,7 @@ export default function Header() {
 
         <div className="header__actions">
           {user ? (
-            <span className="header__username">{user.firstName}</span>
+            <Link to="/profil" className="header__username">{user.firstName}</Link>
           ) : (
             <Link to="/register" aria-label="Créer un compte">
               <User size={20} />
