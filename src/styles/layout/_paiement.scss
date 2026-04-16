@@ -469,7 +469,7 @@
     transition: background $transition;
 
     &:hover {
-      background: color.adjust($color-primary, $lightness: -6%);
+      background: lighten($color-primary, 20%);
     }
 
     &:focus-visible {
