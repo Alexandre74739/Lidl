@@ -11,7 +11,7 @@ export default function TerroirBanner() {
             Une sélection rigoureuse de nos meilleurs artisans français. Des
             produits d'exception pour des moments de dégustation inoubliables.
           </p>
-          <Button to="/selection" variant="outline">
+          <Button to="/rayons" variant="outline">
             Explorer le terroir
           </Button>
         </div>

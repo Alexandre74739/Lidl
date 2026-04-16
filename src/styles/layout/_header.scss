@@ -18,13 +18,16 @@
   }
 
   &__logo {
-    font-family: $font-family;
-    font-size: $font-size-lg;
-    font-weight: $font-weight-bold;
-    color: $color-primary;
     text-decoration: none;
-    white-space: nowrap;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+    &-img {
+      height: 2rem;
+      width: auto;
+      display: block;
+    }
   }
 
   &__search {
@@ -126,6 +129,30 @@
       cursor: pointer;
       color: $color-secondary;
       border-radius: $radius-full;
+      transition: background $transition, color $transition;
+      text-decoration: none;
+
+      &:hover {
+        background: $color-grey;
+        color: $color-primary;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    button,
+    a {
+      @include flex-center;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $color-secondary;
+      border-radius: $radius-full;
+      text-decoration: none;
       transition: background $transition, color $transition;
 
       &:hover {

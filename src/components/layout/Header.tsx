@@ -46,7 +46,8 @@ export default function Header() {
             </Link>
           )}
 
-          <button
+          <Link
+            to="/panier"
             className="header__cart"
             aria-label={`Mon panier — ${count} article${count !== 1 ? "s" : ""}`}
           >
@@ -56,7 +57,7 @@ export default function Header() {
                 {count}
               </span>
             )}
-          </button>
+          </Link>
 
           <button
             className="header__burger"

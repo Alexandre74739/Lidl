@@ -7,11 +7,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icons/*.png'],
+      includeAssets: ['favicon.svg', 'logo.png', 'icons/*.png'],
       manifest: {
-        name: 'Lidl Drive',
-        short_name: 'Lidl Drive',
-        description: 'Commandez en ligne, retirez en magasin.',
+        name: 'Lidl Collect',
+        short_name: 'Lidl Collect',
+        description: 'Faites vos courses Lidl, collectez vos articles.',
         theme_color: '#114FCB',
         background_color: '#FFFFFF',
         display: 'standalone',
@@ -39,6 +39,8 @@ export default defineConfig({
         ],
       },
       workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
         runtimeCaching: [
           {

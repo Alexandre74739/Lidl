@@ -26,7 +26,8 @@ export default function ProductCard({
 }: ProductCardProps) {
   const { getQuantity, setQuantity } = useCart();
   const quantity = getQuantity(id);
-  const update = (q: number) => setQuantity({ id, name, price, image }, q);
+  const update = (q: number) =>
+    setQuantity({ id, name, price, originalPrice, image, description, subtitle }, q);
 
   return (
     <article className="product-card">
