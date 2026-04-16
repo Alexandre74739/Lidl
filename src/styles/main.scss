@@ -7,8 +7,10 @@
 @use 'layout/footer';
 @use 'layout/nav';
 @use 'layout/home';
+@use 'layout/product-detail';
 @use 'layout/rayons';
 @use 'layout/fruit-legumes';
+@use 'layout/cart';
 
 // Composants
 @use 'components/button';

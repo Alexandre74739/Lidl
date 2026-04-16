@@ -6,12 +6,11 @@ export default function HeroSection() {
     <section className="hero">
       <img src={heroImg} alt="Sélection fraîcheur" className="hero__bg" />
       <div className="hero__content">
-        <h1>La Sélection<br />Fraîcheur</h1>
+        <h1>La Sélection Fraîcheur</h1>
         <p>
-          Produits premium sélectionnés avec passion<br />
-          pour sublimer vos tables quotidiennes.
+          Découvrez nos produits premium sélectionnés avec passion pour sublimer vos tables quotidiennes.
         </p>
-        <Button to="/rayon">Découvrir la sélection</Button>
+        <Button to="/rayons">Découvrir la sélection</Button>
       </div>
     </section>
   );

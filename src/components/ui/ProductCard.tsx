@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import { Link } from "react-router";
 import Quantity from "./Quantity";
 import { useCart } from "../../services/CartContext";
 
@@ -25,18 +26,23 @@ export default function ProductCard({
 }: ProductCardProps) {
   const { getQuantity, setQuantity } = useCart();
   const quantity = getQuantity(id);
-  const update = (q: number) => setQuantity({ id, name, price, image }, q);
+  const update = (q: number) =>
+    setQuantity({ id, name, price, originalPrice, image, description, subtitle }, q);
 
   return (
     <article className="product-card">
-      <div className="product-card__image-wrapper">
-        {promotion && <span className="product-card__badge">{promotion}</span>}
-        <img src={image} alt={name} className="product-card__image" />
-      </div>
+      <Link to={`/product/${id}`} className="product-card__link" tabIndex={-1} aria-hidden>
+        <div className="product-card__image-wrapper">
+          {promotion && <span className="product-card__badge">{promotion}</span>}
+          <img src={image} alt={name} className="product-card__image" />
+        </div>
+      </Link>
 
       <div className="product-card__body">
         {subtitle && <span className="product-card__subtitle">{subtitle}</span>}
-        <h3 className="product-card__name">{name}</h3>
+        <Link to={`/product/${id}`} className="product-card__name-link">
+          <h3 className="product-card__name">{name}</h3>
+        </Link>
         {description && (
           <p className="product-card__description">{description}</p>
         )}

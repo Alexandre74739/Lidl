@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import { useCart } from "../../services/CartContext";
+import logoLidl from "../../assets/images/Logo_Lidl.svg";
 
 const navLinks = [
   { label: "Rayons", to: "/rayons" },
@@ -18,7 +19,7 @@ export default function Header() {
     <header className="header">
       <div className="header__inner">
         <Link to="/" className="header__logo" onClick={close}>
-          Lidl Collect
+          <img src={logoLidl} alt="Logo Lidl" width="100" height="auto" />
         </Link>
 
         <div className="header__search">
@@ -39,7 +40,8 @@ export default function Header() {
             <User size={20} />
           </button>
 
-          <button
+          <Link
+            to="/panier"
             className="header__cart"
             aria-label={`Mon panier — ${count} article${count !== 1 ? "s" : ""}`}
           >
@@ -49,7 +51,7 @@ export default function Header() {
                 {count}
               </span>
             )}
-          </button>
+          </Link>
 
           <button
             className="header__burger"
