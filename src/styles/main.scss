@@ -9,6 +9,7 @@
 @use 'layout/home';
 @use 'layout/product-detail';
 @use 'layout/rayons';
+@use 'layout/register';
 @use 'layout/fruit-legumes';
 @use 'layout/cart';
 
@@ -21,3 +22,4 @@
 @use 'components/product-card';
 @use 'components/fruit-card';
 @use 'components/install-prompt';
+@use 'components/geo-modal';

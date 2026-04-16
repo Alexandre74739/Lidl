@@ -228,8 +228,10 @@
       }
     }
 
-    img:last-child {
-      margin-top: $space-8;
+    @include md {
+      img:last-child {
+        margin-top: $space-8;
+      }
     }
   }
 }

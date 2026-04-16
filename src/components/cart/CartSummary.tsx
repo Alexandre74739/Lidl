@@ -1,4 +1,4 @@
-import { ShieldCheck, Zap, HeadphonesIcon } from "lucide-react";
+import { ShieldCheck, Zap, HeadphonesIcon, PartyPopper } from "lucide-react";
 import { useCart } from "../../services/CartContext";
 
 export default function CartSummary() {
@@ -20,7 +20,7 @@ export default function CartSummary() {
         </div>
         {savings > 0 && (
           <div className="cart-summary__row cart-summary__row--savings">
-            <span>🎉 Vos économies</span>
+            <span><PartyPopper size={14} className="cart-summary__savings-icon" /> Vos économies</span>
             <span>- {savings.toFixed(2).replace(".", ",")} €</span>
           </div>
         )}
