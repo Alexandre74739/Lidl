@@ -71,7 +71,7 @@ export default function ProductDetail() {
         <ChevronRight size={14} />
         {product.category && (
           <>
-            <span>{product.category.name}</span>
+            <Link to={`/rayons/${product.category.id}`}>{product.category.name}</Link>
             <ChevronRight size={14} />
           </>
         )}

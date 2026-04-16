@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { ShoppingCart } from "lucide-react";
 import Quantity from "../ui/Quantity";
 import { useCart } from "../../services/CartContext";
@@ -28,13 +29,17 @@ export default function FruitCard({
 
   return (
     <article className="fruit-card">
-      <div className="fruit-card__image-wrapper">
-        {promotion && <span className="fruit-card__badge">{promotion}</span>}
-        <img src={image} alt={name} className="fruit-card__image" />
-      </div>
+      <Link to={`/product/${id}`} className="fruit-card__link" tabIndex={-1} aria-hidden>
+        <div className="fruit-card__image-wrapper">
+          {promotion && <span className="fruit-card__badge">{promotion}</span>}
+          <img src={image} alt={name} className="fruit-card__image" />
+        </div>
+      </Link>
 
       <div className="fruit-card__body">
-        <h3 className="fruit-card__name">{name}</h3>
+        <Link to={`/product/${id}`} className="fruit-card__name-link">
+          <h3 className="fruit-card__name">{name}</h3>
+        </Link>
         {description && (
           <p className="fruit-card__description">{description}</p>
         )}
