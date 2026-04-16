@@ -1,4 +1,4 @@
-import { apiFetch } from './api';
+import { apiFetch } from "./api";
 
 export interface Product {
   id: number;
@@ -6,6 +6,7 @@ export interface Product {
   name: string;
   description?: string;
   price: number;
+  discount?: number;
   weight?: number;
   image_url?: string;
   nutriscore?: string;
@@ -17,7 +18,11 @@ export interface Product {
   };
 }
 
-export const getProducts = (): Promise<Product[]> => apiFetch<Product[]>('/product');
+export const getProducts = (): Promise<Product[]> =>
+  apiFetch<Product[]>("/product");
 
 export const getProductById = (id: number): Promise<Product> =>
   apiFetch<Product>(`/product/${id}`);
+
+export const getPromoProducts = (): Promise<Product[]> =>
+  apiFetch<Product[]>("/product/promo");

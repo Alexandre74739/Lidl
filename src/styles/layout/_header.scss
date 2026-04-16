@@ -20,8 +20,12 @@
   &__logo {
     text-decoration: none;
     flex-shrink: 0;
-    display: flex;
+    display: none;
     align-items: center;
+
+    @include md {
+      display: flex;
+    }
 
     &-img {
       height: 2rem;
@@ -31,32 +35,31 @@
   }
 
   &__search {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    flex: 1;
+    background: $color-white;
+    border-radius: $radius-full;
+    padding: $space-2 $space-4;
+    border: 1.5px solid $color-border;
+    color: $color-muted;
 
     @include md {
-      display: flex;
-      align-items: center;
-      gap: $space-2;
-      flex: 1;
       max-width: 380px;
-      background: $color-white;
-      border-radius: $radius-full;
-      padding: $space-2 $space-4;
-      border: 1.5px solid $color-border;
-      color: $color-muted;
+    }
 
-      input {
-        background: none;
-        border: none;
-        outline: none;
-        width: 100%;
-        font-family: $font-family;
-        font-size: $font-size-sm;
-        color: $color-text;
+    input {
+      background: none;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-family: $font-family;
+      font-size: $font-size-sm;
+      color: $color-text;
 
-        &::placeholder {
-          color: $color-muted;
-        }
+      &::placeholder {
+        color: $color-muted;
       }
     }
   }
@@ -84,13 +87,26 @@
     }
   }
 
-  &__username {
+  &__avatar {
+    @include flex-center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: $radius-full;
+    background-color: $color-secondary;
+    color: $color-white;
     font-family: $font-accent;
-    font-size: $font-size-sm;
+    font-size: 0.8rem;
     font-weight: $font-weight-bold;
-    color: $color-secondary;
-    white-space: nowrap;
-    padding: $space-2 $space-3;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, outline-color 0.3s ease;
+
+    &:hover {
+      background-color: $color-primary;
+      transform: scale(1.05);
+    }
   }
 
   &__actions {
@@ -98,7 +114,7 @@
     align-items: center;
     gap: $space-1;
 
-    a {
+    a:not(.header__username):not(.header__avatar) {
       @include flex-center;
       width: 2.25rem;
       height: 2.25rem;
@@ -143,7 +159,7 @@
     }
 
     button,
-    a {
+    a:not(.header__username):not(.header__avatar) {
       @include flex-center;
       width: 2.25rem;
       height: 2.25rem;

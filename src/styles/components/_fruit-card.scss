@@ -102,8 +102,10 @@
 
   &__footer {
     @include flex-between;
+    align-items: center;
     margin-top: auto;
     padding-top: $space-3;
+    min-height: clamp(2rem, 5vw, 2.5rem);
   }
 
   &__price-group {
@@ -131,10 +133,19 @@
     }
   }
 
+  // Conteneur réservant la largeur du Quantity en permanence
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: calc(clamp(2rem, 5vw, 2.5rem) * 3);
+    flex-shrink: 0;
+  }
+
   &__add {
     @include flex-center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: clamp(2rem, 5vw, 2.5rem);
+    height: clamp(2rem, 5vw, 2.5rem);
     border-radius: $radius-full;
     background: $color-secondary;
     color: $color-white;
@@ -153,6 +164,56 @@
 
     &:focus-visible {
       @include focus-ring;
+    }
+  }
+
+  // ── Mobile overrides ────────────────────────────────────────────────────────
+
+  @media (max-width: #{$bp-md}) {
+    &__image-wrapper {
+      border-radius: 14px;
+      margin-bottom: $space-2;
+    }
+
+    &__badge {
+      font-size: 0.55rem;
+      padding: 2px $space-2;
+      top: $space-2;
+      left: $space-2;
+    }
+
+    &__body {
+      gap: 2px;
+    }
+
+    &__name {
+      font-size: $font-size-sm;
+    }
+
+    &__description {
+      display: none;
+    }
+
+    &__footer {
+      padding-top: $space-2;
+      min-height: 1.75rem;
+    }
+
+    &__price {
+      font-size: $font-size-md;
+
+      &--original {
+        font-size: $font-size-xs;
+      }
+    }
+
+    &__action {
+      width: calc(1.75rem * 3);
+    }
+
+    &__add {
+      width: 1.75rem;
+      height: 1.75rem;
     }
   }
 }

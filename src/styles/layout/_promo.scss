@@ -1,0 +1,102 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ─── Section produits en promotion ───────────────────────────────────────────
+
+.promo-products {
+  padding-bottom: $space-16;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $space-4;
+    margin-bottom: $space-8;
+    padding-top: $space-8;
+  }
+
+  &__title {
+    font-family: $font-title;
+    font-size: $font-size-2xl;
+    color: $color-secondary;
+    margin: 0 0 $space-1;
+    line-height: $line-height-tight;
+  }
+
+  &__count {
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: $color-muted;
+    margin: 0;
+  }
+
+  &__status {
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: $color-muted;
+    padding-block: $space-8;
+
+    &--error {
+      color: $color-danger;
+    }
+  }
+
+  // ── Groupe par catégorie ──────────────────────────────────────────────────
+
+  &__group {
+    margin-bottom: $space-8;
+  }
+
+  &__group-header {
+    @include flex-between;
+    align-items: baseline;
+    margin-bottom: $space-4;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: $space-3;
+  }
+
+  &__group-title {
+    font-family: $font-title;
+    font-size: $font-size-xl;
+    color: $color-secondary;
+    margin: 0;
+  }
+
+  &__group-link {
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: color $transition;
+
+    &:hover {
+      color: color.adjust($color-primary, $lightness: -10%);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4;
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    > * {
+      min-width: 0;
+      overflow: hidden;
+    }
+  }
+}

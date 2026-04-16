@@ -122,7 +122,7 @@ export default function Profil() {
                     <p className="profil__store-address">{store.address}</p>
                   )}
                 </div>
-                <button className="profil__btn-outline">
+                <button className="btn btn--outline btn--sm">
                   CHANGER DE MAGASIN
                 </button>
               </div>
@@ -131,7 +131,7 @@ export default function Profil() {
             )}
           </section>
           <div className="profil__footer">
-            <button className="profil__btn-submit">
+            <button className="btn btn--primary profil__btn-submit">
               ENREGISTRER LES MODIFICATIONS
             </button>
           </div>
