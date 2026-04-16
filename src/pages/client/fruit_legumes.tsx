@@ -39,7 +39,10 @@ export default function FruitLegumes() {
     <main className="fl-page">
       <div className="fl-page__inner container">
         {/* ── Sidebar ── */}
-        <SidebarNav categories={sidebarCategories} />
+        <SidebarNav
+          categories={sidebarCategories.map((c, i) => ({ id: i + 1, name: c.label }))}
+          activeCategoryId={1}
+        />
 
         {/* ── Main content ── */}
         <div className="fl-page__content">
