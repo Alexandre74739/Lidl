@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/client/Home";
-import TestIntegPage from "./test-integ-back/TestIntegPage";
 import Rayons from "./pages/client/Rayons";
 import RayonDetail from "./pages/client/RayonDetail";
 import AmbianceMatch from "./pages/client/AmbianceMatch";
@@ -52,7 +51,6 @@ function App() {
         <Route path="/ambiances/match" element={<AmbianceMatch />} />
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/fidelite" element={<Fidelite />} />
-        <Route path="/test-integ" element={<TestIntegPage />} />
         <Route path="/panier" element={<Cart />} />
       </Routes>
       <Footer />
