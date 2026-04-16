@@ -27,6 +27,7 @@ interface CartContextType {
   items: CartItem[];
   getQuantity: (id: number) => number;
   setQuantity: (product: CartProduct, quantity: number) => void;
+  clearCart: () => void;
   count: number;
   total: number;
   savings: number;
@@ -134,6 +135,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // ── Vider le panier ──────────────────────────────────────────────────────────
+  const clearCart = () => {
+    const idsToDelete = Array.from(itemIdMapRef.current.values());
+    setItems([]);
+    itemIdMapRef.current = new Map();
+    idsToDelete.forEach((id) =>
+      removeCartItem(id).catch((e) =>
+        console.error("[Cart] Erreur suppression item :", e)
+      )
+    );
+  };
+
   // ── Calculs ──────────────────────────────────────────────────────────────────
   const getQuantity = (id: number) =>
     items.find((i) => i.id === id)?.quantity ?? 0;
@@ -148,7 +161,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ items, getQuantity, setQuantity, count, total, savings, loading }}
+      value={{ items, getQuantity, setQuantity, clearCart, count, total, savings, loading }}
     >
       {children}
     </CartContext.Provider>

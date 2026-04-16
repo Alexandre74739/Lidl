@@ -491,3 +491,80 @@
     }
   }
 }
+
+// ── Message d'erreur récap ─────────────────────────────────────
+.checkout__error {
+  font-size: $font-size-xs;
+  color: $color-danger;
+  background: rgba($color-danger, 0.08);
+  border: 1px solid rgba($color-danger, 0.25);
+  border-radius: $radius-md;
+  padding: $space-2 $space-3;
+  margin: 0;
+}
+
+// ── Page succès ────────────────────────────────────────────────
+.paiement-succes {
+  min-height: calc(100vh - #{$header-height});
+  margin-top: $header-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-6 $space-4;
+  background: #f5f6fa;
+
+  &__card {
+    background: $color-white;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    padding: $space-12 $space-8;
+    max-width: 480px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-4;
+    text-align: center;
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    color: $color-success;
+  }
+
+  &__title {
+    font-family: $font-title;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-2xl;
+    color: $color-secondary;
+    margin: 0;
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: $color-muted;
+    line-height: $line-height-normal;
+    margin: 0;
+  }
+
+  &__btn {
+    display: inline-block;
+    margin-top: $space-2;
+    padding: $space-3 $space-8;
+    background: $color-primary;
+    color: $color-white;
+    border-radius: $radius-full;
+    font-family: $font-accent;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background $transition;
+
+    &:hover {
+      background: color.adjust($color-primary, $lightness: +8%);
+    }
+  }
+}

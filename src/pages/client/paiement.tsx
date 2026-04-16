@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { useCart } from "../../services/CartContext";
 import {
   Store,
@@ -30,7 +31,8 @@ const SLOTS: TimeSlot[] = [
 ];
 
 export default function Paiement() {
-  const { total, savings } = useCart();
+  const { total, savings, clearCart } = useCart();
+  const navigate = useNavigate();
   const subtotal = total + savings;
 
   const [mode, setMode] = useState<RetractMode>("drive");
@@ -43,6 +45,19 @@ export default function Paiement() {
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
+  const [formError, setFormError] = useState("");
+
+  const handleConfirm = () => {
+    if (paymentMethod === "card") {
+      if (!cardHolder.trim() || !cardNumber.trim() || !expiry.trim() || !cvv.trim()) {
+        setFormError("Veuillez remplir tous les champs de votre carte bancaire.");
+        return;
+      }
+    }
+    setFormError("");
+    clearCart();
+    navigate("/paiement/succes");
+  };
 
   const cagnotte = 5.0;
   const totalAfterCagnotte = useCagnotte ? total - cagnotte : total;
@@ -253,7 +268,11 @@ export default function Paiement() {
             <strong>{totalAfterCagnotte.toFixed(2).replace(".", ",")} €</strong>
           </div>
 
-          <button className="checkout__recap-cta">
+          {formError && (
+            <p className="checkout__error">{formError}</p>
+          )}
+
+          <button className="checkout__recap-cta" onClick={handleConfirm}>
             CONFIRMER ET PAYER {totalAfterCagnotte.toFixed(2).replace(".", ",")} €
           </button>
 
