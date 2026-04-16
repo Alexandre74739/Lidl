@@ -23,7 +23,8 @@ export default function FruitCard({
 }: FruitCardProps) {
   const { getQuantity, setQuantity } = useCart();
   const quantity = getQuantity(id);
-  const update = (q: number) => setQuantity({ id, name, price, image }, q);
+  const update = (q: number) =>
+    setQuantity({ id, name, price, originalPrice, image, description }, q);
 
   return (
     <article className="fruit-card">

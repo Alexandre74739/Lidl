@@ -5,7 +5,6 @@ import RayonDetail from "./pages/client/RayonDetail";
 import AmbianceMatch from "./pages/client/AmbianceMatch";
 import Promotions from "./pages/client/Promotions";
 import Fidelite from "./pages/client/Fidelite";
-import FruitLegumes from "./pages/client/fruit_legumes";
 import Cart from "./pages/client/Panier";
 import ProductDetail from "./pages/client/ProductDetail";
 import Register from "./pages/client/Register";
@@ -56,9 +55,9 @@ function App() {
             <Route path="/ambiances/match" element={<AmbianceMatch />} />
             <Route path="/promotions" element={<Promotions />} />
             <Route path="/fidelite" element={<Fidelite />} />
-            <Route path="/rayons/alimentaire" element={<FruitLegumes />} />
             <Route path="/register" element={<Register />} />
             <Route path="/panier" element={<Cart />} />
+          </Routes>
           <Footer />
         </CartProvider>
       </AuthProvider>
