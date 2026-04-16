@@ -27,7 +27,7 @@ export default function Footer() {
       </div>
 
       <div className="footer__copy">
-        © 2024 Lidl Collect. Tous droits réservés.
+        © 2026 Lidl Collect. Tous droits réservés.
       </div>
     </footer>
   );
