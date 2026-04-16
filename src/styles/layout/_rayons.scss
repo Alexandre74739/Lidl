@@ -237,7 +237,6 @@
 // ─── Ambiances Grid ───────────────────────────────────────────────────────────
 
 .ambiances-grid {
-  background-color: $color-grey;
   padding-block: $space-12;
 
   &__inner {
@@ -249,7 +248,7 @@
   }
 
   &__title {
-    font-family: $font-title;
+    font-family: $font-family;
     color: $color-secondary;
     font-size: $font-size-2xl;
     margin-bottom: $space-3;

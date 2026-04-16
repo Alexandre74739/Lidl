@@ -43,11 +43,11 @@ export default function InstallPrompt() {
       <div className="install-prompt__content">
         <img
           src="/icons/icon-192.png"
-          alt="Lidl Drive"
+          alt="Lidl Collect"
           className="install-prompt__icon"
         />
         <div className="install-prompt__text">
-          <strong>Installer Lidl Drive</strong>
+          <strong>Installer Lidl Collect</strong>
           {isIOS ? (
             <span>
               Appuyez sur <span aria-label="partager">⎋</span> puis « Sur

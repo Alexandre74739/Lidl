@@ -10,7 +10,7 @@
   border-top: $color-primary 0.5px   solid;
 
   @include md {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   &__inner {
