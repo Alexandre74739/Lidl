@@ -13,6 +13,7 @@ import Register from "./pages/client/Register";
 import Profil from "./pages/client/Profil";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import ScrollToTop from "./components/layout/ScrollToTop";
 import InstallPrompt from "./components/ui/InstallPrompt";
 import BottomNav from "./components/ui/BottomNav";
 import GeolocalisationModal from "./components/modal/goelocalisation";
@@ -50,6 +51,7 @@ function App() {
     <CookieProvider>
       <AuthProvider>
         <CartProvider>
+          <ScrollToTop />
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

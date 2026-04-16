@@ -13,12 +13,10 @@ const navLinks = [
 export default function Header() {
   const { count } = useCart();
   const { user } = useAuth();
-  const close = () => setNavOpen(false);
-
   return (
     <header className="header">
       <div className="header__inner">
-        <Link to="/" className="header__logo" onClick={close}>
+        <Link to="/" className="header__logo">
           <img src={logoLidl} alt="Logo Lidl" width="100" height="auto" />
         </Link>
 
@@ -37,7 +35,9 @@ export default function Header() {
 
         <div className="header__actions">
           {user ? (
-            <Link to="/profil" className="header__username">{user.firstName}</Link>
+            <Link to="/profil" className="header__avatar" aria-label={`Mon profil — ${user.firstName} ${user.lastName}`}>
+              {user.firstName[0]}{user.lastName[0]}
+            </Link>
           ) : (
             <Link to="/register" aria-label="Créer un compte">
               <User size={20} />
