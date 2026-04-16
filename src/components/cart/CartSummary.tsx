@@ -1,7 +1,9 @@
 import { ShieldCheck, Zap, HeadphonesIcon, PartyPopper } from "lucide-react";
+import { useNavigate } from "react-router";
 import { useCart } from "../../services/CartContext";
 
 export default function CartSummary() {
+  const navigate = useNavigate();
   const { total, savings } = useCart();
   const subtotal = total + savings;
 
@@ -31,7 +33,7 @@ export default function CartSummary() {
         <strong>{total.toFixed(2).replace(".", ",")} €</strong>
       </div>
 
-      <button className="cart-summary__cta">VALIDER MON PANIER</button>
+      <button className="cart-summary__cta" onClick={() => navigate("/paiement")}>VALIDER MON PANIER</button>
 
       <ul className="cart-summary__badges">
         <li><ShieldCheck size={14} /> Paiement 100% sécurisé</li>
