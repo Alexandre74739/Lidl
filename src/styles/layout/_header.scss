@@ -84,13 +84,30 @@
     }
   }
 
-  &__username {
+  &__avatar {
+    @include flex-center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: $radius-full;
+    background-color: $color-secondary;
+    color: $color-white;
     font-family: $font-accent;
-    font-size: $font-size-sm;
+    font-size: 0.8rem;
     font-weight: $font-weight-bold;
-    color: $color-secondary;
-    white-space: nowrap;
-    padding: $space-2 $space-3;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba($color-secondary, 0.35);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, outline-color 0.3s ease;
+    outline: 1.5px solid rgba($color-secondary, 0.6);
+
+    &:hover {
+      background-color: $color-primary;
+      outline-color: rgba($color-primary, 0.6);
+      box-shadow: 0 4px 12px rgba($color-primary, 0.4);
+      transform: scale(1.05);
+    }
   }
 
   &__actions {
@@ -98,7 +115,7 @@
     align-items: center;
     gap: $space-1;
 
-    a {
+    a:not(.header__username):not(.header__avatar) {
       @include flex-center;
       width: 2.25rem;
       height: 2.25rem;
@@ -143,7 +160,7 @@
     }
 
     button,
-    a {
+    a:not(.header__username):not(.header__avatar) {
       @include flex-center;
       width: 2.25rem;
       height: 2.25rem;
