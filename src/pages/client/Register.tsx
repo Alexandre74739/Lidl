@@ -1,5 +1,5 @@
 import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import { apiFetch } from '../../services/api';
 import { useAuth } from '../../services/AuthContext';
 import logoLidl from '../../assets/images/Logo_Lidl.svg';
@@ -40,6 +40,7 @@ export default function Register() {
     storeId: '',
     notifications: false,
   });
+
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -168,18 +169,6 @@ export default function Register() {
                   />
                 </div>
               </div>
-              <div className="register__field">
-                <label htmlFor="address">ADRESSE</label>
-                <input
-                  id="address"
-                  name="address"
-                  type="text"
-                  placeholder="20 rue des templiers 38000 Grenoble"
-                  value={form.address}
-                  onChange={handleChange}
-                  autoComplete="street-address"
-                />
-              </div>
             </section>
 
             {/* SÉCURITÉ */}
@@ -248,9 +237,14 @@ export default function Register() {
               </p>
             )}
 
-            <button type="submit" className="register__submit" disabled={loading}>
+            <button type="submit" className="btn btn--primary btn--full register__submit" disabled={loading}>
               {loading ? 'CRÉATION EN COURS…' : 'CRÉER MON COMPTE'}
             </button>
+
+            <p className="register__login-link">
+              Déjà un compte ?{' '}
+              <Link to="/login">SE CONNECTER</Link>
+            </p>
           </form>
         </div>
 
