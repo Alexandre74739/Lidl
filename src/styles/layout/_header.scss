@@ -113,6 +113,14 @@
     }
   }
 
+  &__account {
+    display: none;
+
+    @include md {
+      display: flex;
+    }
+  }
+
   &__cart {
     position: relative;
 
