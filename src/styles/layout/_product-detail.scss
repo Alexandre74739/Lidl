@@ -16,7 +16,9 @@
     text-align: center;
   }
 
-  &__error { color: $color-danger; }
+  &__error {
+    color: $color-danger;
+  }
 
   // Breadcrumb
   &__breadcrumb {
@@ -32,7 +34,10 @@
       color: $color-muted;
       text-decoration: none;
       transition: color $transition;
-      &:hover { color: $color-primary; }
+
+      &:hover {
+        color: $color-primary;
+      }
     }
 
     &-current {
@@ -186,7 +191,7 @@
     max-width: 0;
     opacity: 0;
     flex-shrink: 0;
-    transition: max-width 0.35s ease, opacity 0.25s ease;
+    transition: $transition;
 
     &--visible {
       max-width: 130px;
@@ -195,14 +200,16 @@
 
     .quantity {
       &--btn {
-        background: $color-grey;
-        color: $color-secondary;
+        background: $color-secondary;
+        color: $color-white;
 
-        &:hover { background: $color-border; }
+        &:hover {
+          background: darken($color-secondary, 10%);
+        }
       }
 
       &--value {
-        background: $color-grey;
+        background: $color-white;
         color: $color-secondary;
         font-weight: $font-weight-bold;
       }
@@ -231,9 +238,17 @@
     white-space: nowrap;
     overflow: hidden;
 
-    &:hover { background: color.adjust($color-primary, $lightness: -8%); }
-    &:active { transform: scale(0.98); }
-    &:focus-visible { @include focus-ring; }
+    &:hover {
+      background: lighten($color-primary, 10%);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
   }
 
   // Corps : détails + avis
@@ -289,7 +304,9 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
 
-    svg { color: $color-primary; }
+    svg {
+      color: $color-primary;
+    }
   }
 }
 

@@ -4,7 +4,8 @@
 // ─── Page layout (sidebar + content) ─────────────────────────────────────────
 
 .fl-page {
-  background: #F0F4F8;
+  margin-top: $space-4;
+  background: $color-white;
   padding-block: $space-8;
   min-height: 100vh;
 

@@ -1,0 +1,493 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ── Page ──────────────────────────────────────────────────────
+.checkout {
+  padding-top: calc(#{$header-height} + #{$space-8});
+  padding-bottom: calc(#{$nav-height} + #{$space-8});
+  min-height: 100dvh;
+  background: #f5f6fa;
+
+  @include md {
+    padding-bottom: $space-16;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-8;
+    align-items: start;
+
+    @include lg {
+      grid-template-columns: 1fr 380px;
+    }
+  }
+
+  // ── Title ───────────────────────────────────────────────────
+  &__title {
+    font-family: $font-title;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $space-8;
+    line-height: $line-height-tight;
+  }
+
+  // ── Section block ───────────────────────────────────────────
+  &__section {
+    margin-bottom: $space-8;
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-6;
+  }
+
+  &__badge {
+    @include flex-center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $color-secondary;
+    color: $color-white;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+
+  &__section-title {
+    font-family: $font-family;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    letter-spacing: 0.04em;
+  }
+
+  &__lock-icon {
+    color: $color-muted;
+    margin-left: auto;
+  }
+
+  // ── Mode de retrait ─────────────────────────────────────────
+  &__modes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-4;
+
+    @include sm {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__mode-card {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    padding: $space-6;
+    background: $color-white;
+    border: 2px solid $color-border;
+    border-radius: $radius-lg;
+    cursor: pointer;
+    transition: all $transition;
+    text-align: left;
+
+    svg {
+      color: $color-secondary;
+      flex-shrink: 0;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    strong {
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+    }
+
+    span {
+      font-size: $font-size-xs;
+      color: $color-muted;
+    }
+
+    &:hover {
+      border-color: $color-secondary;
+    }
+
+    &--active {
+      border-color: $color-secondary;
+      background: $color-grey;
+    }
+  }
+
+  // ── Choix du créneau ────────────────────────────────────────
+  &__days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    margin-bottom: $space-6;
+  }
+
+  &__day {
+    padding: $space-3 $space-6;
+    border-radius: $radius-full;
+    border: 2px solid $color-border;
+    background: $color-white;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover {
+      border-color: $color-secondary;
+    }
+
+    &--active {
+      background: $color-secondary;
+      border-color: $color-secondary;
+      color: $color-white;
+    }
+  }
+
+  &__slots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-3;
+
+    @include sm {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__slot {
+    padding: $space-3 $space-4;
+    border-radius: $radius-full;
+    border: 2px solid $color-border;
+    background: $color-white;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-secondary;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover:not(:disabled) {
+      border-color: $color-secondary;
+    }
+
+    &--active {
+      background: $color-grey;
+      border-color: $color-secondary;
+      font-weight: $font-weight-bold;
+    }
+
+    &--full {
+      opacity: 0.4;
+      cursor: not-allowed;
+      color: $color-muted;
+    }
+  }
+
+  // ── Encart fidélité ─────────────────────────────────────────
+  &__fidelity {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    background: $color-grey;
+    border-radius: $radius-lg;
+    padding: $space-6;
+    margin-bottom: $space-8;
+
+    @include sm {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__fidelity-left {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+
+    strong {
+      font-family: $font-family;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+      display: block;
+    }
+
+    span {
+      font-size: $font-size-sm;
+      color: $color-muted;
+    }
+
+    em {
+      color: $color-primary;
+      font-style: normal;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__fidelity-icon {
+    color: $color-primary;
+    flex-shrink: 0;
+  }
+
+  // ── Toggle switch ───────────────────────────────────────────
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    cursor: pointer;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &__toggle-track {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: $color-border;
+    border-radius: $radius-full;
+    transition: background $transition;
+    flex-shrink: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: $color-white;
+      border-radius: 50%;
+      transition: transform $transition;
+      box-shadow: $shadow-sm;
+    }
+
+    input:checked + & {
+      background: $color-primary;
+
+      &::after {
+        transform: translateX(24px);
+      }
+    }
+  }
+
+  &__toggle-label {
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+  }
+
+  // ── Paiement tabs ───────────────────────────────────────────
+  &__pay-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-3;
+    margin-bottom: $space-6;
+  }
+
+  &__pay-tab {
+    @include flex-center;
+    gap: $space-2;
+    padding: $space-4;
+    border-radius: $radius-full;
+    border: 2px solid $color-border;
+    background: $color-white;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    cursor: pointer;
+    transition: all $transition;
+
+    &:hover {
+      border-color: $color-secondary;
+    }
+
+    &--active {
+      background: $color-secondary;
+      border-color: $color-secondary;
+      color: $color-white;
+    }
+  }
+
+  // ── Card form ───────────────────────────────────────────────
+  &__card-form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+
+  &__field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-4;
+  }
+
+  &__label {
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $space-4;
+    background: #f8f9fa;
+    border: none;
+    border-radius: $radius-lg;
+    font-family: $font-family;
+    font-size: $font-size-base;
+    color: $color-text;
+    outline: none;
+    transition: box-shadow $transition;
+
+    &::placeholder {
+      color: #bfc4ce;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px $color-secondary;
+    }
+  }
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__input-icon {
+    position: absolute;
+    right: $space-4;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-secondary;
+    pointer-events: none;
+  }
+
+  // ── Récapitulatif (sidebar) ─────────────────────────────────
+  &__recap {
+    background: $color-grey;
+    border-radius: $radius-lg;
+    padding: $space-6;
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    position: sticky;
+    top: calc(#{$header-height} + #{$space-4});
+  }
+
+  &__recap-title {
+    font-family: $font-title;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+  }
+
+  &__recap-rows {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+
+  &__recap-row {
+    @include flex-between;
+    font-size: $font-size-sm;
+    color: $color-text;
+
+    &--discount {
+      color: $color-primary;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__recap-total {
+    border-top: 1.5px solid $color-border;
+    padding-top: $space-4;
+    @include flex-between;
+    align-items: flex-end;
+
+    span {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      color: $color-text;
+    }
+
+    strong {
+      font-family: $font-title;
+      font-size: $font-size-3xl;
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+      line-height: 1;
+    }
+  }
+
+  &__recap-cta {
+    width: 100%;
+    padding: $space-4;
+    background: $color-primary;
+    color: $color-white;
+    border: none;
+    border-radius: $radius-full;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background $transition;
+
+    &:hover {
+      background: color.adjust($color-primary, $lightness: -6%);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__recap-info {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-2;
+    font-size: $font-size-xs;
+    color: $color-muted;
+    line-height: $line-height-normal;
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+}
