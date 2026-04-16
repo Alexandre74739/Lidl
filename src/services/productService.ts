@@ -25,4 +25,4 @@ export const getProductById = (id: number): Promise<Product> =>
   apiFetch<Product>(`/product/${id}`);
 
 export const getPromoProducts = (): Promise<Product[]> =>
-  apiFetch<Product[]>("/product/promo");
+  apiFetch<Product[]>("/product");

@@ -15,8 +15,10 @@ const SORT_OPTIONS: { key: SortOption; label: string }[] = [
   { key: "price-desc", label: "Prix décroissant" },
 ];
 
+const PROMO_DISCOUNT = 20;
+
 function promoPrice(p: Product) {
-  return Math.round(p.price * (1 - (p.discount ?? 0) / 100) * 100) / 100;
+  return Math.round(p.price * (1 - PROMO_DISCOUNT / 100) * 100) / 100;
 }
 
 function sortProducts(products: Product[], sort: SortOption): Product[] {
@@ -184,7 +186,7 @@ export default function Promotions() {
                       image={p.image_url ?? ""}
                       price={promoPrice(p)}
                       originalPrice={p.price}
-                      promotion={`-${p.discount}%`}
+                      promotion={`-${PROMO_DISCOUNT}%`}
                     />
                   ))}
                 </div>
