@@ -42,6 +42,7 @@ export default function RayonDetail() {
   const [allCategories, setAllCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [initialLoad, setInitialLoad] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<SortOption>("promo");
   const [sortOpen, setSortOpen] = useState(false);
@@ -62,7 +63,7 @@ export default function RayonDetail() {
         setProducts(allProducts.filter((p) => Number(p.category_id) === categoryId));
       })
       .catch((err: Error) => setError(err.message))
-      .finally(() => setLoading(false));
+      .finally(() => { setLoading(false); setInitialLoad(false); });
   }, [categoryId]);
 
   const sorted = sortProducts(products, sort);
@@ -117,14 +118,14 @@ export default function RayonDetail() {
           </div>
 
           {/* États */}
-          {loading && <p className="fl-breadcrumb__current">Chargement des produits...</p>}
+          {initialLoad && loading && <p className="fl-breadcrumb__current">Chargement des produits...</p>}
           {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
           {!loading && !error && products.length === 0 && (
             <p className="fl-breadcrumb__link">Aucun produit dans ce rayon.</p>
           )}
 
           {/* Grille produits */}
-          {!loading && !error && sorted.length > 0 && (
+          {!error && sorted.length > 0 && (
             <div className="fl-page__grid">
               {sorted.map((p) => (
                 <FruitCard
